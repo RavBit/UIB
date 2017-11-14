@@ -5,13 +5,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 
-[Serializable]
-public class User
-{
-    public bool success;
-    public string error;
-    public string email;
-}
 public class AuthenticationManager : MonoBehaviour {
     public GameObject mainMenu;
 
