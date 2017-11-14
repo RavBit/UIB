@@ -23,11 +23,11 @@ namespace InfinityCode.OnlineMapsExamples
             OnlineMapsGooglePlaces.FindNearby(
                 apiKey,
                 new OnlineMapsGooglePlaces.NearbyParams(
-                    151.1957362f, // Longitude
-                    -33.8670522f, // Latitude
-                    5000) // Radius
-                {
-                    types = "food"
+                    5.134724f, // Longitude
+                    52.08051f, // Latitude
+                    500) // Radius
+                {         
+                    types = "school"
                 }).OnComplete += OnComplete;
         }
 
@@ -37,6 +37,7 @@ namespace InfinityCode.OnlineMapsExamples
         /// <param name="s">Response string</param>
         private void OnComplete(string s)
         {
+            Debug.Log("test");
             // Trying to get an array of results.
             OnlineMapsGooglePlacesResult[] results = OnlineMapsGooglePlaces.GetResults(s);
 
