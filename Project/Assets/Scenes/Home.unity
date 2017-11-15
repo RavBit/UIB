@@ -226,7 +226,7 @@ MonoBehaviour:
   autoStopUpdateOnInput: 1
   compassThreshold: 8
   createMarkerInUserPosition: 1
-  disableEmulatorInPublish: 1
+  disableEmulatorInPublish: 0
   emulatorCompass: 0
   emulatorPosition: {x: 5.134724, y: 52.080505}
   findLocationByIP: 0
@@ -240,8 +240,8 @@ MonoBehaviour:
   restoreAfter: 10
   trueHeading: 0
   updatePosition: 1
-  useCompassForMarker: 0
-  useGPSEmulator: 0
+  useCompassForMarker: 1
+  useGPSEmulator: 1
   desiredAccuracy: 10
   updateDistance: 10
 --- !u!114 &191719082
