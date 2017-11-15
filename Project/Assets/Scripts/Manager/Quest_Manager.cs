@@ -14,20 +14,23 @@ public class Quest_Manager : MonoBehaviour {
     {
         //Pool to setup the events in
         Event_Manager.AddQuest += AddQuest;
+        Event_Manager.DrawQuests += DrawQuests;
     }
     static void Load_Quest()
     {
         //Event_Manager.Load_Objects(LOAD_OBJECTS.Quest);
         Web_Manager.instance.StartCoroutine("SelectField");
     }
-
-    public void Quest_Loader()
-    {
-
-    }
-
     public void AddQuest(Quest quest)
     {
         Quests.Add(quest);
+    }
+
+    public void DrawQuests() {
+        foreach(Quest quest in Quests)
+        {
+            Event_Manager.Add_QuestMarker(quest);
+            Debug.Log("Draw Quests");
+        }
     }
 }
