@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class System_Manager : MonoBehaviour {
     public Text usernameTag;
+    public GameObject MapCanvas;
     void Awake()
     {
         setup();
@@ -21,5 +22,8 @@ public class System_Manager : MonoBehaviour {
     public void Logout()
     {
         App_Manager.instance.LogOutUser();
+    }
+    public void ToggleMap(bool toggle) {
+        MapCanvas.SetActive(toggle);
     }
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class Event_Manager : MonoBehaviour {
-    
+
     //Delegate to load in objects
     public delegate void LoadObjects();
     public static event LoadObjects LoadQuest;
@@ -16,11 +16,18 @@ public class Event_Manager : MonoBehaviour {
     public static event QuestData AddQuestMarker;
     public static event QuestData AddQuestCircles;
 
+    //Delegate to Toggle Objects
+    public delegate void ToggleObjects(bool toggle, int name);
+    public static event ToggleObjects ToggleDialog;
+
+    //Delegate to load in dialogs
+    public delegate void DialogInsert(int id, string[] dialogs);
+    public static event DialogInsert InsertDialog;
+    public delegate void Checks();
+    public static event Checks DistanceCheck;
     //Loads in Objects in the scene and deletes other markers or data
-    public static void Load_Objects(LOAD_OBJECTS lo)
-    {
-        switch (lo)
-        {
+    public static void Load_Objects(LOAD_OBJECTS lo) {
+        switch (lo) {
             case LOAD_OBJECTS.Quest:
                 LoadQuest();
                 break;
@@ -29,8 +36,7 @@ public class Event_Manager : MonoBehaviour {
         }
         LoadQuest();
     }
-    public static void Add_Quest(Quest quest)
-    {
+    public static void Add_Quest(Quest quest) {
         AddQuest(quest);
     }
 
@@ -41,11 +47,24 @@ public class Event_Manager : MonoBehaviour {
                 break;
         }
     }
+    public static void Toggle_Elements(DRAW_OBJECTS d_o, bool toggle, string name) {
+        switch (d_o) {
+            case DRAW_OBJECTS.Dialog:
+                ToggleDialog(toggle, 1);
+                break;
+        }
+    }
     public static void Add_QuestMarker(Quest quest) {
         AddQuestMarker(quest);
     }
     public static void Add_QuestCircles(Quest quest) {
         AddQuestCircles(quest);
+    }
+    public static void Distance_Check() {
+        DistanceCheck();
+    }
+    public static void Insert_Dialog(int id, string[] dialog) {
+        InsertDialog(id, dialog);
     }
 }
 public enum LOAD_OBJECTS
@@ -56,5 +75,6 @@ public enum LOAD_OBJECTS
 
 public enum DRAW_OBJECTS {
     Quest,
-    Userdata
+    Userdata,
+    Dialog
 }

@@ -11,7 +11,11 @@ public class Draw_Manager : MonoBehaviour {
         Event_Manager.AddQuestMarker += DrawQuests;
     }
     public void DrawQuests(Quest quest) {
-        OnlineMaps.instance.AddMarker(new Vector2(quest.start_y, quest.start_x), quest.name);
+        OnlineMapsMarker m = new OnlineMapsMarker();
+        m.SetPosition(quest.start_y, quest.start_x);
+        m.label = quest.name;
+        m.scale = 2;
+        OnlineMaps.instance.AddMarker(m);
         //OnlineMapsMarker.OnMarkerDrawTooltip.
     }
 }

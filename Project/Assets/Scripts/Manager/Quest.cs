@@ -5,6 +5,7 @@ public class Quest {
     public string name;
     public float start_x;
     public float start_y;
+    public string[] dialogs;
     private OnlineMapsMarker dynamicMarker;
     public bool ClickAble;
     //TODO: DRAW CIRCLE AROUND MARKER
@@ -26,7 +27,7 @@ public class Quest {
     }
 
     private void OnMarkerClick(OnlineMapsMarkerBase marker) {
-        // Show in console marker label.
+        Event_Manager.Toggle_Elements(DRAW_OBJECTS.Dialog, true, name);
         UnityEngine.Debug.Log(marker.label);
     }
 
