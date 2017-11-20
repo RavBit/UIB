@@ -27,7 +27,7 @@ namespace InfinityCode.OnlineMapsExamples
                     52.08051f, // Latitude
                     500) // Radius
                 {         
-                    types = "school"
+                    types = "restaurant"
                 }).OnComplete += OnComplete;
         }
 

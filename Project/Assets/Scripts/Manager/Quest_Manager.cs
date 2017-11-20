@@ -10,6 +10,19 @@ public class Quest_Manager : MonoBehaviour {
         Setup();
         Load_Quest();
     }
+
+    private void Update() {
+        CheckDistanceQuest();
+    }
+    void CheckDistanceQuest() {
+        foreach(Quest quest in Quests) {
+            Debug.Log("Quest: " + quest.name + "  = " + (OnlineMapsUtils.DistanceBetweenPointsD(new Vector2(quest.start_y, quest.start_x), new Vector2(OnlineMapsLocationService.instance.GetLocationX(), OnlineMapsLocationService.instance.GetLocationY()))));
+            double dis = OnlineMapsUtils.DistanceBetweenPointsD(new Vector2(quest.start_y, quest.start_x), new Vector2(OnlineMapsLocationService.instance.GetLocationX(), OnlineMapsLocationService.instance.GetLocationY()));
+            if(dis < 0.05f) {
+                Debug.Log("QUEST: " + quest.name);
+            }
+        }
+    }
     void Setup()
     {
         //Pool to setup the events in
@@ -18,7 +31,6 @@ public class Quest_Manager : MonoBehaviour {
     }
     static void Load_Quest()
     {
-        //Event_Manager.Load_Objects(LOAD_OBJECTS.Quest);
         Web_Manager.instance.StartCoroutine("SelectField");
     }
     public void AddQuest(Quest quest)
@@ -30,7 +42,9 @@ public class Quest_Manager : MonoBehaviour {
         foreach(Quest quest in Quests)
         {
             Event_Manager.Add_QuestMarker(quest);
-            Debug.Log("Draw Quests");
+            //TODO: MAKE MARKER
+            //Event_Manager.Add_QuestCircles(quest);
         }
+
     }
 }

@@ -11,7 +11,7 @@ namespace InfinityCode.OnlineMapsExamples
     [AddComponentMenu("Infinity Code/Online Maps/Examples (API Usage)/MarkerClickExample")]
     public class MarkerClickExample : MonoBehaviour
     {
-        private void Start()
+        public void Refresh()
         {
             OnlineMaps map = OnlineMaps.instance;
 

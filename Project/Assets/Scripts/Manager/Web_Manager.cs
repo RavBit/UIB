@@ -15,6 +15,8 @@ public class Web_Manager : MonoBehaviour {
     }
     public IEnumerator SelectField()
     {
+        //Command gescheiden bestand CSV
+        // ! https://www.mysql.com/products/workbench/
         WWW questData = new WWW("http://81.169.177.181/UIB/request_quests.php");
         yield return questData;
         string questDataString = questData.text;

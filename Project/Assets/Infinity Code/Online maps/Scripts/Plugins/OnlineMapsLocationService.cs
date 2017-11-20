@@ -131,11 +131,25 @@ public class OnlineMapsLocationService : OnlineMapsLocationServiceGenericBase<On
         return Input.location.status == LocationServiceStatus.Running;
     }
 
-    public override void GetLocation(out float longitude, out float latitude)
-    {
+    public override void GetLocation(out float longitude, out float latitude) {
         LocationInfo data = Input.location.lastData;
         longitude = data.longitude;
         latitude = data.latitude;
+    }
+    public float GetLocationX() {
+        LocationInfo data = Input.location.lastData;
+#if UNITY_EDITOR
+        return emulatorPosition.x;
+#endif
+        return data.longitude;
+    }
+
+    public float GetLocationY() {
+        LocationInfo data = Input.location.lastData;
+#if UNITY_EDITOR
+        return emulatorPosition.y;
+#endif
+        return data.latitude;
     }
 
     public override void StopLocationService()

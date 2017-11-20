@@ -14,6 +14,7 @@ public class Event_Manager : MonoBehaviour {
     public delegate void QuestData(Quest quest);
     public static event QuestData AddQuest;
     public static event QuestData AddQuestMarker;
+    public static event QuestData AddQuestCircles;
 
     //Loads in Objects in the scene and deletes other markers or data
     public static void Load_Objects(LOAD_OBJECTS lo)
@@ -42,6 +43,9 @@ public class Event_Manager : MonoBehaviour {
     }
     public static void Add_QuestMarker(Quest quest) {
         AddQuestMarker(quest);
+    }
+    public static void Add_QuestCircles(Quest quest) {
+        AddQuestCircles(quest);
     }
 }
 public enum LOAD_OBJECTS
