@@ -5,6 +5,8 @@ using UnityEngine;
 public class Quest_Manager : MonoBehaviour {
 
     public List<Quest> Quests;
+
+    public Texture2D RedMarker;
     void Start()
     {
         Setup();
@@ -19,7 +21,13 @@ public class Quest_Manager : MonoBehaviour {
             Debug.Log("Quest: " + quest.name + "  = " + (OnlineMapsUtils.DistanceBetweenPointsD(new Vector2(quest.start_y, quest.start_x), new Vector2(OnlineMapsLocationService.instance.GetLocationX(), OnlineMapsLocationService.instance.GetLocationY()))));
             double dis = OnlineMapsUtils.DistanceBetweenPointsD(new Vector2(quest.start_y, quest.start_x), new Vector2(OnlineMapsLocationService.instance.GetLocationX(), OnlineMapsLocationService.instance.GetLocationY()));
             if(dis < 0.05f) {
-                Debug.Log("QUEST: " + quest.name);
+                foreach(OnlineMapsMarker marker in OnlineMaps.instance.markers) {
+                    if(marker.label == quest.name) {
+                        Debug.Log("marker: " + quest.name);
+                        if(!quest.ClickAble)
+                            quest.AddInteraction();
+                    }
+                }
             }
         }
     }

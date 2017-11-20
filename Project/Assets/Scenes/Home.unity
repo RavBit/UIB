@@ -240,7 +240,6 @@ GameObject:
   - component: {fileID: 191719082}
   - component: {fileID: 191719081}
   - component: {fileID: 191719080}
-  - component: {fileID: 191719086}
   - component: {fileID: 191719087}
   m_Layer: 0
   m_Name: Map
@@ -396,7 +395,28 @@ MonoBehaviour:
   labels: 0
   language: en
   lockRedraw: 0
-  markers: []
+  markers:
+  - label: 
+    range:
+      max: 20
+      min: 3
+      maxLimit: 20
+      minLimit: 3
+    tags: []
+    _enabled: 1
+    latitude: 0
+    longitude: 0
+    _scale: 1
+    align: 7
+    locked: 0
+    markerColliderRect:
+      serializedVersion: 2
+      x: -0.5
+      y: -0.5
+      width: 1
+      height: 1
+    texture: {fileID: 0}
+    _rotation: 0
   needRedraw: 1
   notInteractUnderGUI: 1
   provider: 2
@@ -441,18 +461,6 @@ MonoBehaviour:
   longitude: 0
   _zoom: 18
   _activeTypeSettings: 
---- !u!114 &191719086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 191719078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f1b4d81fce4c40498c646c046fcc586, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  apiKey: AIzaSyAV1KcI9QIy_cIR_eEeoORS1mPgEV8Hyl4
 --- !u!114 &191719087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,7 +667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &802007177
 RectTransform:
   m_ObjectHideFlags: 0
@@ -962,6 +970,7 @@ GameObject:
   - component: {fileID: 1015617008}
   - component: {fileID: 1015617009}
   - component: {fileID: 1015617010}
+  - component: {fileID: 1015617011}
   m_Layer: 0
   m_Name: Quest_Manager
   m_TagString: Untagged
@@ -994,6 +1003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Quests: []
+  RedMarker: {fileID: 2800000, guid: feaad80094becdb47ad7ba34180e2a6d, type: 3}
 --- !u!114 &1015617010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1005,6 +1015,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e61c456ab81f7147bbbf48b129cc6c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1015617011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1015617007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24fe90fba5d4b094db78f644a54a15b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKey: AIzaSyAV1KcI9QIy_cIR_eEeoORS1mPgEV8Hyl4
 --- !u!1 &1130837921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,7 +1195,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1362726724
 RectTransform:
   m_ObjectHideFlags: 0
