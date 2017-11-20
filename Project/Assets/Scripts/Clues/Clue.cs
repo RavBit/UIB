@@ -13,6 +13,7 @@ public class Clue : MonoBehaviour {
     public Text targetText;
     public Transform target;
     public Canvas canvas;
+    public ClueManager clueManager;
 
 	void Update () {
         //Make sure clue is always facing camera (target)
@@ -23,5 +24,6 @@ public class Clue : MonoBehaviour {
         canvas.gameObject.SetActive(true);
         gameObject.SetActive(false);
         targetText.text = clueText;
+        clueManager.FoundClue(this);
     }
 }
