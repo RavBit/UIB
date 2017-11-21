@@ -25,6 +25,9 @@ public class Event_Manager : MonoBehaviour {
     public static event DialogInsert InsertDialog;
     public delegate void Checks();
     public static event Checks DistanceCheck;
+
+    public delegate void LoadDialog(string _name, string _description);
+    public static event LoadDialog DialogLoad;
     //Loads in Objects in the scene and deletes other markers or data
     public static void Load_Objects(LOAD_OBJECTS lo) {
         switch (lo) {
@@ -47,12 +50,15 @@ public class Event_Manager : MonoBehaviour {
                 break;
         }
     }
-    public static void Toggle_Elements(DRAW_OBJECTS d_o, bool toggle, string name) {
+    public static void Toggle_Elements(DRAW_OBJECTS d_o, bool toggle, int id) {
         switch (d_o) {
             case DRAW_OBJECTS.Dialog:
-                ToggleDialog(toggle, 1);
+                ToggleDialog(toggle, id);
                 break;
         }
+    }
+    public static void Dialog_Load(string _name, string _description) {
+        DialogLoad(_name, _description);
     }
     public static void Add_QuestMarker(Quest quest) {
         AddQuestMarker(quest);

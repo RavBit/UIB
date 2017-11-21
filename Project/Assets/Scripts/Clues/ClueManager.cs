@@ -14,7 +14,7 @@ public class ClueManager : MonoBehaviour {
     private List<string> foundClues;
 
 	void Start () {
-        cluesList = GetComponentsInChildren<Clue>();
+        //cluesList = GetComponentsInChildren<Clue>();
         
         for (int i = 0; i < cluesArray.Length; i++) {
             Debug.Log(cluesArray.Length);

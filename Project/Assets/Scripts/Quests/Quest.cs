@@ -2,9 +2,11 @@
 
 [System.Serializable]
 public class Quest {
+    public int id;
     public string name;
     public float start_x;
     public float start_y;
+    public int curdialog;
     public string[] dialogs;
     private OnlineMapsMarker dynamicMarker;
     public bool ClickAble;
@@ -27,8 +29,7 @@ public class Quest {
     }
 
     private void OnMarkerClick(OnlineMapsMarkerBase marker) {
-        Event_Manager.Toggle_Elements(DRAW_OBJECTS.Dialog, true, name);
-        UnityEngine.Debug.Log(marker.label);
+        Event_Manager.Toggle_Elements(DRAW_OBJECTS.Dialog, true, id);
     }
 
     public void RemoveInteraction() {

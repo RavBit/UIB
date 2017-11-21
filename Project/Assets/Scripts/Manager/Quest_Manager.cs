@@ -39,7 +39,7 @@ public class Quest_Manager : MonoBehaviour {
         //Pool to setup the events in
         Event_Manager.AddQuest += AddQuest;
         Event_Manager.DrawQuests += DrawQuests;
-        //Event_Manager.ToggleDialog += DrawDialog;
+        Event_Manager.ToggleDialog += DrawDialog;
         Event_Manager.InsertDialog += InsertDialogs;
         Event_Manager.DistanceCheck += CheckDistanceQuest;
     }
@@ -61,10 +61,21 @@ public class Quest_Manager : MonoBehaviour {
         }
 
     }
-    public void DrawDialog(bool toggle) {
-        DialogScreen.SetActive(toggle);
+    public void DrawDialog(bool toggle, int id) {
+        foreach (Quest quest in Quests) {
+            if(quest.id == id) {
+                Debug.Log("Loading Quest: " + quest.name);
+                DialogScreen.gameObject.SetActive(toggle);
+                /*DialogScreen.GetComponent<Quest_Dialog>().Name.text = quest.name;
+                string dialog = quest.dialogs[quest.curdialog];
+                DialogScreen.GetComponent<Quest_Dialog>().Dialog.text = dialog;*/
+                Event_Manager.Dialog_Load(quest.name, quest.dialogs[quest.curdialog]);
+            }
+        }
     }
     public void InsertDialogs(int id, string[] dialogs) {
-        Quests[id].dialogs = dialogs;
+        Quests[id].dialogs = new string[dialogs.Length];
+        Debug.Log("Quests dialog: " + dialogs.Length);
+        Quests[id].dialogs.CopyTo(dialogs, 0);
     }
 }
