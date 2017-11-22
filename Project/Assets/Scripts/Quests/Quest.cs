@@ -7,7 +7,7 @@ public class Quest {
     public float start_x;
     public float start_y;
     public int curdialog;
-    public string[] dialogs;
+    public List<string> dialogs;
     private OnlineMapsMarker dynamicMarker;
     public bool ClickAble;
     //TODO: DRAW CIRCLE AROUND MARKER

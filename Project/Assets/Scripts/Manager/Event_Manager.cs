@@ -21,8 +21,6 @@ public class Event_Manager : MonoBehaviour {
     public static event ToggleObjects ToggleDialog;
 
     //Delegate to load in dialogs
-    public delegate void DialogInsert(int id, string[] dialogs);
-    public static event DialogInsert InsertDialog;
     public delegate void Checks();
     public static event Checks DistanceCheck;
 
@@ -68,9 +66,6 @@ public class Event_Manager : MonoBehaviour {
     }
     public static void Distance_Check() {
         DistanceCheck();
-    }
-    public static void Insert_Dialog(int id, string[] dialog) {
-        InsertDialog(id, dialog);
     }
 }
 public enum LOAD_OBJECTS
