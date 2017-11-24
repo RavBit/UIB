@@ -45,12 +45,32 @@ public class AuthenticationManager : MonoBehaviour {
         string email = textEmail.text;
         string password = textPassword.GetComponentInParent<InputField>().text;
         form = new WWWForm();
-        form.AddField("email", email);
-        form.AddField("password", password);
+        form.AddField("usernamePost", email);
+        form.AddField("passwordPost", password);
 
-        WWW w = new WWW("http://81.169.177.181/UIB/action_login_1.php", form);
+        WWW w = new WWW("http://81.169.177.181/UIB/action_login.php", form);
         yield return w;
-        Debug.Log("w " + w.text);
+        Login_Feedback.color = Color.black;
+        if (string.IsNullOrEmpty(w.error))
+        {
+            if (w.text.ToLower().Contains("invalid email or password"))
+            {
+                Login_Feedback.text = "Invalid email or password";
+
+            }
+            else
+            {
+                Login_Feedback.text = "Login Successful";
+                App_Manager.instance.SetUsername(email);
+                SceneManager.LoadScene("Home", LoadSceneMode.Single);
+            }
+        }
+        else
+        {
+            Login_Feedback.text = "An Error Occured";
+        }
+        //TODO: GET IT WORKING WITH JSON
+        /*Debug.Log("w " + w.text);
         if (string.IsNullOrEmpty(w.error)) {
             User user = JsonUtility.FromJson<User>(w.text);
             if (user.success == true) {
@@ -67,23 +87,8 @@ public class AuthenticationManager : MonoBehaviour {
         } else {
             // error
             Login_Feedback.text = "An error occured.";
-        }
-        /*if (w.text.ToLower().Contains("invalid email or password"))
-        {
-            Login_Feedback.text = "Invalid email or password";
-
-        }
-        else
-        {
-            Login_Feedback.text = "Login Successful";
-            App_Manager.instance.SetUsername(email);
-            SceneManager.LoadScene("Home", LoadSceneMode.Single);
-        }
-        }
-        else
-        {
-            Login_Feedback.text = "An Error Occured";
         }*/
+
 
     }
 }
