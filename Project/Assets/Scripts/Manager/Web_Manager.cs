@@ -3,7 +3,15 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Linq;
 using UnityEngine;
+using System;
 
+[Serializable]
+public class User {
+    public bool succes;
+    public string error;
+    public string email;
+    //public string password;
+}
 public class Web_Manager : MonoBehaviour {
     public static Web_Manager instance;
     public string[] words;
