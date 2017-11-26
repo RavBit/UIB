@@ -27,7 +27,6 @@ public class AuthenticationManager : MonoBehaviour {
         public bool success;
         public string error;
         public string email;
-        public int id;
         // feel free to add userName....
     }
     void Start () {
@@ -69,8 +68,9 @@ public class AuthenticationManager : MonoBehaviour {
         {
             Login_Feedback.text = "An Error Occured";
         }
+        /*
         //TODO: GET IT WORKING WITH JSON
-        /*Debug.Log("w " + w.text);
+        Debug.Log(w.text);
         if (string.IsNullOrEmpty(w.error)) {
             User user = JsonUtility.FromJson<User>(w.text);
             if (user.success == true) {

@@ -10,6 +10,7 @@ public class Quest {
     public List<string> dialogs;
     private OnlineMapsMarker dynamicMarker;
     public bool ClickAble;
+    public List<Suspect> Suspects;
     //TODO: DRAW CIRCLE AROUND MARKER
     //public List<UnityEngine.Vector2> cirpoints;
     //public OnlineMapsDrawingPoly StartPoly;

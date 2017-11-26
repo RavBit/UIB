@@ -7,6 +7,7 @@ using UnityEngine;
  * Is a culprit or not
  */
 
+[System.Serializable]
 public class Suspect : MonoBehaviour {
     
     public SpriteRenderer hairRenderer;
@@ -14,6 +15,11 @@ public class Suspect : MonoBehaviour {
     public SpriteRenderer clothesRenderer;
     private bool isCulprit;
 
+    //NEW ADDED FOR DATABASE DATA STORED
+    public string Name;
+    public string Description;
+    public string Look;
+    public float Height;
     //Suspect suspect;
 
     public void SetSuspect(Sprite newHair, Sprite newFace, Sprite newClothes) {
