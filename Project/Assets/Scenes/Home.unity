@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -167,7 +167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &35799971
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2031,15 +2031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4b3f560ca849f48b64e8215f8ec236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Quests:
-  - id: 0
-    name: 
-    start_x: 0
-    start_y: 0
-    curdialog: 0
-    dialogs: []
-    ClickAble: 0
-    Suspects: []
+  Quests: []
   RedMarker: {fileID: 2800000, guid: ecf767fa425ba544792b46c01283745c, type: 3}
   GreenMarker: {fileID: 2800000, guid: ea7eb0aa8eaab054a91d4219f9719f63, type: 3}
   DialogScreen: {fileID: 35799970}
@@ -2877,6 +2869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   words: []
+  test: []
 --- !u!1 &1613208143
 GameObject:
   m_ObjectHideFlags: 0

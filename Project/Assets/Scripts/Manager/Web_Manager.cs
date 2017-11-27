@@ -10,6 +10,7 @@ public class Web_Manager : MonoBehaviour
 {
     public static Web_Manager instance;
     public string[] words;
+    public List<Suspect> test;
     void Awake()
     {
         if (instance != null)
@@ -35,15 +36,14 @@ public class Web_Manager : MonoBehaviour
         MatchCollection mc_startx = r_startx.Matches(questDataString);
         MatchCollection mc_starty = r_starty.Matches(questDataString);
 
-        for (int i = 0; i < mc_name.Count; i++)
-        {
+        for (int i = 0; i < mc_name.Count; i++) {
             //New Quest instantiate and insert the data into the database
             Quest q = new Quest();
             q.id = int.Parse(mc_id[i].Groups[1].Value);
             q.name = mc_name[i].Groups[1].Value;
             q.start_x = float.Parse(mc_startx[i].Groups[1].Value);
             q.start_y = float.Parse(mc_starty[i].Groups[1].Value);
-
+            q.Suspects = new List<Suspect>();
             //Get the Quests dialogs from the server
             WWWForm form_dialog = new WWWForm();
             form_dialog.AddField("questDataPost", q.id);
@@ -60,22 +60,23 @@ public class Web_Manager : MonoBehaviour
             yield return questssuspects_Data;
             Debug.Log(questssuspects_Data.text);
             string quest_suspects = questssuspects_Data.text;
-            Regex r_sus_name = new Regex(@",(.+?),");
-            Regex r_sus_desc = new Regex(@":(.+?):");
-            Regex r_sus_look = new Regex(@"/(.+?)/");
-            Regex r_sus_height = new Regex(@"#(.+?)#");
-            MatchCollection mc_sus_name = r_sus_name.Matches(quest_suspects);
-            MatchCollection mc_sus_desc = r_sus_desc.Matches(quest_suspects);
-            MatchCollection mc_sus_look = r_sus_look.Matches(quest_suspects);
-            MatchCollection mc_sus_height = r_sus_height.Matches(quest_suspects);
-            for (int s = 0; i < mc_sus_name.Count; i++)
-            {
-                Suspect S = new Suspect();
-                S.Name = mc_sus_name[s].Groups[1].Value;
-                S.Description = mc_sus_desc[s].Groups[1].Value;
-                S.Look = (mc_sus_look[s].Groups[1].Value);
-                S.Height = float.Parse(mc_sus_height[s].Groups[1].Value);
-                q.Suspects.Add(S);
+            MatchCollection mc_sus_name = r_id.Matches(quest_suspects);
+            MatchCollection mc_sus_desc = r_name.Matches(quest_suspects);
+            MatchCollection mc_sus_look = r_startx.Matches(quest_suspects);
+            MatchCollection mc_sus_height = r_starty.Matches(quest_suspects);
+            for (int s = 0; s < mc_sus_name.Count; s++) {
+                    Debug.Log(s + " / Quest " + q.name + " loading suspects");
+                    Suspect S = new Suspect();
+                    S.Name = mc_sus_name[s].Groups[1].Value;
+                    S.Description = mc_sus_desc[s].Groups[1].Value;
+                    S.Look = (mc_sus_look[s].Groups[1].Value);
+                    S.Height = float.Parse(mc_sus_height[s].Groups[1].Value);
+                    Debug.Log(mc_sus_name[s].Groups[1].Value);
+                    Debug.Log(mc_sus_desc[s].Groups[1].Value);
+                    Debug.Log(mc_sus_look[s].Groups[1].Value);
+                    Debug.Log(float.Parse(mc_sus_height[s].Groups[1].Value));
+                    if(S.Name != null)
+                        q.Suspects.Add(S);   
             }
 
             Event_Manager.Add_Quest(q);
