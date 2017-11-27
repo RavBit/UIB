@@ -48,6 +48,7 @@ public class Quest_Manager : MonoBehaviour {
     }
     public void AddQuest(Quest quest)
     {
+        Debug.Log("adding: " + quest.name);
         Quests.Add(quest);
     }
 
