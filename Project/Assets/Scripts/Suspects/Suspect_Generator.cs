@@ -12,6 +12,7 @@ using UnityEngine;
 public class Suspect_Generator : MonoBehaviour {
     //make lists for all the different components that will be randomized
     public Sprite[] sprites;
+    public GameObject suspectPrefab;
     private Suspect suspect;
 
     int randomHair;
