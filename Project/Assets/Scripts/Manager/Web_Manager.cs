@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Linq;
@@ -67,11 +67,14 @@ public class Web_Manager : MonoBehaviour
             MatchCollection mc_sus_height = r_starty.Matches(quest_suspects);
             for (int s = 0; s < mc_sus_name.Count; s++) {
                     Debug.Log(s + " / Quest " + q.name + " loading suspects");
-                    Suspect S = new Suspect();
-                    S.Name = mc_sus_name[s].Groups[1].Value;
-                    S.Description = mc_sus_desc[s].Groups[1].Value;
-                    S.Look = (mc_sus_look[s].Groups[1].Value);
-                    S.Height = float.Parse(mc_sus_height[s].Groups[1].Value);
+                    Suspect S = new Suspect(mc_sus_name[s].Groups[1].Value, 
+                                            mc_sus_desc[s].Groups[1].Value, 
+                                            mc_sus_look[s].Groups[1].Value, 
+                                            float.Parse(mc_sus_height[s].Groups[1].Value));
+                    //S.Name = mc_sus_name[s].Groups[1].Value;
+                    //S.Description = mc_sus_desc[s].Groups[1].Value;
+                    //S.Look = (mc_sus_look[s].Groups[1].Value);
+                    //S.Height = float.Parse(mc_sus_height[s].Groups[1].Value);
                     Debug.Log(mc_sus_name[s].Groups[1].Value);
                     Debug.Log(mc_sus_desc[s].Groups[1].Value);
                     Debug.Log(mc_sus_look[s].Groups[1].Value);

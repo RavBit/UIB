@@ -24,8 +24,8 @@ public class Base_Suspect {
         Height = h;
         Debug.Log("Successfully created suspect!");
         lookArray = Look.ToCharArray();
-        for (int i = 0; i < lookArray.Length; i++) {
-            Debug.Log(lookArray[i]);
+        if (lookArray[0] == 'A' && lookArray[1] == 'A') {
+            Debug.Log("Wahoo!");
         }
     }
 
