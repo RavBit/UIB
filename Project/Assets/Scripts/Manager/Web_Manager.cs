@@ -44,6 +44,7 @@ public class Web_Manager : MonoBehaviour
             q.start_x = float.Parse(mc_startx[i].Groups[1].Value);
             q.start_y = float.Parse(mc_starty[i].Groups[1].Value);
             q.Suspects = new List<Suspect>();
+            q.Clues = new List<Quest_Clues>();
             //Get the Quests dialogs from the server
             WWWForm form_dialog = new WWWForm();
             form_dialog.AddField("questDataPost", q.id);
@@ -78,7 +79,22 @@ public class Web_Manager : MonoBehaviour
                     if(S.Name != null)
                         q.Suspects.Add(S);   
             }
-
+            WWWForm form_clues = new WWWForm();
+            form_clues.AddField("cluesDataPost", q.id);
+            WWW form_clues_Data = new WWW("http://81.169.177.181/UIB/request_clues.php", form_clues);
+            yield return form_clues_Data;
+            Debug.Log(form_clues_Data.text);
+            string[] quest_clues = form_clues_Data.text.Split(';');
+            List<string> quest_clues_list = quest_clues.ToList();
+            for (int c = 0; c < quest_clues_list.Count; c++)
+            {
+                Quest_Clues C = new Quest_Clues();
+                C.clue = quest_clues_list[c];
+                C.found = false;
+                if (C.clue != null)
+                    q.Clues.Add(C);
+            }
+            q.Clues.Remove(q.Clues[q.Clues.Count - 1]);
             Event_Manager.Add_Quest(q);
         }
         Event_Manager.Draw_Quest(DRAW_OBJECTS.Quest);

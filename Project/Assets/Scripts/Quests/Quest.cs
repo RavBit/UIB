@@ -11,6 +11,7 @@ public class Quest {
     private OnlineMapsMarker dynamicMarker;
     public bool ClickAble;
     public List<Suspect> Suspects;
+    public List<Quest_Clues> Clues;
     //TODO: DRAW CIRCLE AROUND MARKER
     //public List<UnityEngine.Vector2> cirpoints;
     //public OnlineMapsDrawingPoly StartPoly;
