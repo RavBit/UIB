@@ -66,6 +66,7 @@ public class AuthenticationManager : MonoBehaviour {
         }
         else
         {
+            Debug.Log("w: " + w.text);
             Login_Feedback.text = "An Error Occured";
         }
         /*

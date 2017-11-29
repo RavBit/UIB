@@ -2031,16 +2031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4b3f560ca849f48b64e8215f8ec236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Quests:
-  - id: 0
-    name: 
-    start_x: 0
-    start_y: 0
-    curdialog: 0
-    dialogs: []
-    ClickAble: 0
-    Suspects: []
-    Clues: []
+  Quests: []
   RedMarker: {fileID: 2800000, guid: ecf767fa425ba544792b46c01283745c, type: 3}
   GreenMarker: {fileID: 2800000, guid: ea7eb0aa8eaab054a91d4219f9719f63, type: 3}
   DialogScreen: {fileID: 35799970}
