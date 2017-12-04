@@ -18,6 +18,12 @@ public class Web_Manager : MonoBehaviour
         else
             instance = this;
     }
+    public class Dialog {
+        public bool success;
+        public string error;
+        public string dialog;
+        // feel free to add userName....
+    }
     public IEnumerator LoadQuests()
     {
         //Command gescheiden bestand CSV
@@ -46,14 +52,14 @@ public class Web_Manager : MonoBehaviour
             q.Suspects = new List<Suspect>();
             q.Clues = new List<Quest_Clues>();
             //Get the Quests dialogs from the server
-            WWWForm form_dialog = new WWWForm();
+            /*WWWForm form_dialog = new WWWForm();
             form_dialog.AddField("questDataPost", q.id);
             WWW questdialog_Data = new WWW("http://81.169.177.181/UIB/request_dialogs.php", form_dialog);
             yield return questdialog_Data;
             string[] quest_dialog = questdialog_Data.text.Split(';');
             List<string> quest_dialog_list = quest_dialog.ToList();
             q.dialogs = quest_dialog_list;
-            q.dialogs.Remove(q.dialogs[q.dialogs.Count - 1]);
+            q.dialogs.Remove(q.dialogs[q.dialogs.Count - 1]);*/
             //Get the Quests suspects from the server
             WWWForm form_suspects = new WWWForm();
             form_suspects.AddField("suspectDataPost", q.id);
