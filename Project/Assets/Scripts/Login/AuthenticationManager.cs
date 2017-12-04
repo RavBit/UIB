@@ -46,11 +46,12 @@ public class AuthenticationManager : MonoBehaviour {
         form = new WWWForm();
         form.AddField("usernamePost", email);
         form.AddField("passwordPost", password);
+        form.AddField("emailPost", email);
 
         WWW w = new WWW("http://81.169.177.181/UIB/action_login.php", form);
         yield return w;
         Login_Feedback.color = Color.black;
-        if (string.IsNullOrEmpty(w.error))
+        /*if (string.IsNullOrEmpty(w.error))
         {
             if (w.text.ToLower().Contains("invalid email or password"))
             {
@@ -68,8 +69,8 @@ public class AuthenticationManager : MonoBehaviour {
         {
             Debug.Log("w: " + w.text);
             Login_Feedback.text = "An Error Occured";
-        }
-        /*
+        }*/
+        
         //TODO: GET IT WORKING WITH JSON
         Debug.Log(w.text);
         if (string.IsNullOrEmpty(w.error)) {
@@ -88,7 +89,7 @@ public class AuthenticationManager : MonoBehaviour {
         } else {
             // error
             Login_Feedback.text = "An error occured.";
-        }*/
+        }
 
 
     }
