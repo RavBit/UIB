@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Xml;
+using System.Xml.Serialization;
 
 /* Clues need to:
  * Always face the camera
@@ -9,7 +11,14 @@ using UnityEngine.UI;
  * Each have their own text when inspected
  */
 public class Clue : MonoBehaviour {
+
+    [XmlAttribute("ClueName")]
+    public string clueName;
+
+    public bool isFound;
     public string clueText;
+
+    //possibly move these to a new script? UI manager?
     public Text targetText;
     public Transform target;
     public Canvas canvas;
@@ -24,6 +33,6 @@ public class Clue : MonoBehaviour {
         canvas.gameObject.SetActive(true);
         gameObject.SetActive(false);
         targetText.text = clueText;
-        clueManager.FoundClue(this);
+        //clueManager.FoundClue(this);
     }
 }
