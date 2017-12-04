@@ -4,10 +4,13 @@ using UnityEngine;
 
 [System.Serializable]
 public class Base_Suspect {
-    public GameObject suspectPrefab;
     public SpriteRenderer hairRenderer;
     public SpriteRenderer faceRenderer;
     public SpriteRenderer clothesRenderer;
+    public GameObject suspectBody;
+    public GameObject suspectHair;
+    private SpriteRenderer bodySR;
+    private SpriteRenderer hairSR;
     private bool isCulprit;
     private char[] lookArray;
 
@@ -22,11 +25,30 @@ public class Base_Suspect {
         Description = d;
         Look = l;
         Height = h;
-        Debug.Log("Successfully created suspect!");
         lookArray = Look.ToCharArray();
+        suspectBody = new GameObject();
+        suspectBody.name = Name;
+        bodySR = suspectBody.AddComponent<SpriteRenderer>();
+        suspectHair = new GameObject();
+        suspectHair.name = Name + " hair";
+        suspectHair.transform.SetParent(suspectBody.transform);
+        hairSR = suspectHair.AddComponent<SpriteRenderer>();
+        Sprite body;
+        Sprite hair;
+
         if (lookArray[0] == 'A' && lookArray[1] == 'A') {
-            Debug.Log("Wahoo!");
+            body = Resources.Load<Sprite>("Sprites/Body/Male");
+        } else {
+            body = Resources.Load<Sprite>("Sprites/Body/Female");
         }
+        bodySR.sprite = body;
+        
+        if (lookArray[2] == 'a') {
+            hair = Resources.Load<Sprite>("Sprites/Hair/Square");
+        } else {
+            hair = Resources.Load<Sprite>("Sprites/Hair/Triangle");
+        }
+        hairSR.sprite = hair;
     }
 
     public void SetSuspect(Sprite newHair, Sprite newFace, Sprite newClothes) {
