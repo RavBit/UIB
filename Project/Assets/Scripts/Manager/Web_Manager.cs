@@ -11,6 +11,8 @@ public class Web_Manager : MonoBehaviour
     public static Web_Manager instance;
     public string[] words;
     public List<Suspect> test;
+    public Witness[] wtest;
+   
     void Awake()
     {
         if (instance != null)
@@ -18,11 +20,16 @@ public class Web_Manager : MonoBehaviour
         else
             instance = this;
     }
-    public class Dialog {
-        public bool success;
-        public string error;
+    [System.Serializable]
+    public struct Witness {
+        public int witness_id;
         public string dialog;
         // feel free to add userName....
+    }
+    [System.Serializable]
+    public class WitnessList
+    {
+        public List<Witness> wlist;
     }
     public IEnumerator LoadQuests()
     {
@@ -41,6 +48,17 @@ public class Web_Manager : MonoBehaviour
         MatchCollection mc_name = r_name.Matches(questDataString);
         MatchCollection mc_startx = r_startx.Matches(questDataString);
         MatchCollection mc_starty = r_starty.Matches(questDataString);
+        WWW w = new WWW("http://81.169.177.181/UIB/request_witness.php");
+        yield return w;
+        Debug.Log(w.text);
+        if (string.IsNullOrEmpty(w.error))
+        {
+            wtest = JsonHelper.getJsonArray<Witness>(w.text);
+        }
+        else
+        {
+            Debug.Log("An error occured.");
+        }
 
         for (int i = 0; i < mc_name.Count; i++) {
             //New Quest instantiate and insert the data into the database
