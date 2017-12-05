@@ -39,22 +39,27 @@ public class Web_Manager : MonoBehaviour
                 WWW witnessdata = new WWW("http://81.169.177.181/UIB/request_witness.php", quest_id);
                 yield return witnessdata;
                 _questdata[i].witness = JsonHelper.getJsonArray<Witness>(witnessdata.text).ToList<Witness>();
-                Debug.Log("WITNESS LOADING " + witnessdata.text);
                 for (int j = 0; j < _questdata[i].witness.Count; j++)
                 {
                     WWWForm witness_id = new WWWForm();
                     witness_id.AddField("witness_id", _questdata[i].witness[j].id);
                     WWW w = new WWW("http://81.169.177.181/UIB/request_dialogs.php", witness_id);
                     yield return w;
-                    Debug.Log("WITNESS LOADING " + w.text);
                     _questdata[i].witness[j].dialogs = JsonHelper.getJsonArray<Quest_BaseDialog>(w.text).ToList<Quest_BaseDialog>();
                 }
+                WWW suspectdata = new WWW("http://81.169.177.181/UIB/request_suspects.php", quest_id);
+                yield return suspectdata;
+                _questdata[i].Suspects = JsonHelper.getJsonArray<Suspect>(suspectdata.text).ToList<Suspect>();
+                WWW cluesdata = new WWW("http://81.169.177.181/UIB/request_clues.php", quest_id);
+                yield return cluesdata;
+                _questdata[i].Clues = JsonHelper.getJsonArray<Quest_Clues>(cluesdata.text).ToList<Quest_Clues>();
             }
         }
         else
         {
             Debug.LogError("ERROR FATAL");
         }
-        Event_Manager.Draw_Quest(DRAW_OBJECTS.Quest);
+        Event_Manager.Set_QuestList(_questdata);
+        //_questdata.Clear();
     }
 }

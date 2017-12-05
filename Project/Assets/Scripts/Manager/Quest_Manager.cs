@@ -41,6 +41,7 @@ public class Quest_Manager : MonoBehaviour {
         Event_Manager.DrawQuests += DrawQuests;
         Event_Manager.ToggleDialog += DrawDialog;
         Event_Manager.DistanceCheck += CheckDistanceQuest;
+        Event_Manager.SetQuestList += SetQuest;
     }
     static void Load_Quest()
     {
@@ -50,6 +51,9 @@ public class Quest_Manager : MonoBehaviour {
     {
         Debug.Log("adding: " + quest.name);
         Quests.Add(quest);
+    }
+    public void SetQuest(List<Quest> ql) {
+        Quests = ql;
     }
 
     public void DrawQuests() {
@@ -65,7 +69,7 @@ public class Quest_Manager : MonoBehaviour {
         foreach (Quest quest in Quests) {
             if(quest.id == id) {
                 DialogScreen.gameObject.SetActive(toggle);
-                Event_Manager.Dialog_Load(quest.name, quest.dialogs[quest.curdialog]);
+                //Event_Manager.Dialog_Load(quest.name, quest.dialogs[quest.curdialog]);
             }
         }
     }
