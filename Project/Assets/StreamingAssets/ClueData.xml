@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<ClueDatabase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <clues>
+    <ClueEntry>
+      <clueName>Vingerafdruk</clueName>
+      <isFound>false</isFound>
+      <description>Zou deze van de verdachte zijn?</description>
+      <isKeyClue>true</isKeyClue>
+    </ClueEntry>
+    <ClueEntry>
+      <clueName>Clue 2</clueName>
+      <isFound>false</isFound>
+      <description>Zou deze van de verdachte zijn?</description>
+      <isKeyClue>false</isKeyClue>
+    </ClueEntry>
+    <ClueEntry>
+      <clueName>Clue 3</clueName>
+      <isFound>false</isFound>
+      <description>Zou deze van de verdachte zijn?</description>
+      <isKeyClue>false</isKeyClue>
+    </ClueEntry>
+  </clues>
+</ClueDatabase>

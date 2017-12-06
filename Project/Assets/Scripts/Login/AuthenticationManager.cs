@@ -51,6 +51,27 @@ public class AuthenticationManager : MonoBehaviour {
         WWW w = new WWW("http://81.169.177.181/UIB/action_login.php", form);
         yield return w;
         Login_Feedback.color = Color.black;
+        /*if (string.IsNullOrEmpty(w.error))
+        {
+            if (w.text.ToLower().Contains("invalid email or password"))
+            {
+                Login_Feedback.text = "Invalid email or password";
+
+            }
+            else
+            {
+                Login_Feedback.text = "Login Successful";
+                App_Manager.instance.SetUsername(email);
+                SceneManager.LoadScene("Home", LoadSceneMode.Single);
+            }
+        }
+        else
+        {
+            Debug.Log("w: " + w.text);
+            Login_Feedback.text = "An Error Occured";
+        }*/
+        
+        //TODO: GET IT WORKING WITH JSON
         Debug.Log(w.text);
         if (string.IsNullOrEmpty(w.error)) {
             User user = JsonUtility.FromJson<User>(w.text);

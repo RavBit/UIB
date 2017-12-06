@@ -6,10 +6,7 @@
 
 [System.Serializable]
 public class Suspect : Base_Suspect {
-    /*public string name;
-    public string description;
-    public string look;
-    public float height;*/
+
 
     //public Suspect GetSuspect() {
     //    return suspect;
