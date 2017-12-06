@@ -10,20 +10,22 @@ using System.Xml.Serialization;
  * Be clickable to inspect
  * Each have their own text when inspected
  */
-public class Clue : MonoBehaviour {
+public class Clue {
 
     [XmlAttribute("ClueName")]
     public string clueName;
 
+    [XmlElement("IsFound")]
     public bool isFound;
-    public string clueText;
 
+    /*
     //possibly move these to a new script? UI manager?
+    public string clueText;
     public Text targetText;
     public Transform target;
     public Canvas canvas;
     public ClueManager clueManager;
-
+    
 	void Update () {
         //Make sure clue is always facing camera (target)
         transform.LookAt(target);
@@ -35,4 +37,5 @@ public class Clue : MonoBehaviour {
         targetText.text = clueText;
         //clueManager.FoundClue(this);
     }
+    */
 }

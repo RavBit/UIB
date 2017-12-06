@@ -11,27 +11,31 @@ using System.IO;
  */
 
 [XmlRoot("ClueCollection")]
-public class ClueManager : MonoBehaviour {
+public class ClueManager {
 
     [XmlArray("Clues")]
     [XmlArrayItem("Clue")]
     public List<Clue> clues = new List<Clue>();
 
-    void Start() {
-        Save("C:\\Users\\sarah\\Documents\\test.xml");
+    public static ClueManager Load(string path) {
+        TextAsset xml = Resources.Load<TextAsset>(path);
+        XmlSerializer serializer = new XmlSerializer(typeof(ClueManager));
+
+        StringReader reader = new StringReader(xml.text);
+
+        ClueManager clues = serializer.Deserialize(reader) as ClueManager;
+
+        reader.Close();
+
+        return clues;
     }
 
-    public void Save(string path) { 
+    public void Save(string path) {
         var serializer = new XmlSerializer(typeof(ClueManager));
         var stream = new FileStream(path, FileMode.Create);
         serializer.Serialize(stream, this);
         stream.Close();
     }
 
-    public static ClueManager Load(string path) {
-        var serializer = new XmlSerializer(typeof(ClueManager));
-        using (var stream = new FileStream(path, FileMode.Open)) {
-            return serializer.Deserialize(stream) as ClueManager;
-        }
-    }
+
 }
