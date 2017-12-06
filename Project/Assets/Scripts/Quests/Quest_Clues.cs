@@ -2,5 +2,5 @@
 public class Quest_Clues
 {
     public string clue;
-    public bool found;
+    public int found;
 }

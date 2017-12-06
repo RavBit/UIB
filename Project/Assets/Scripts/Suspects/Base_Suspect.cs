@@ -4,6 +4,11 @@ using UnityEngine;
 
 [System.Serializable]
 public class Base_Suspect {
+    public string name;
+    public string description;
+    public string look;
+    public float height;
+
     public SpriteRenderer hairRenderer;
     public SpriteRenderer faceRenderer;
     public SpriteRenderer clothesRenderer;
@@ -15,22 +20,18 @@ public class Base_Suspect {
     private char[] lookArray;
 
     //NEW ADDED FOR DATABASE DATA STORED
-    public string Name;
-    public string Description;
-    public string Look;
-    public float Height;
 
     public Base_Suspect(string n, string d, string l, float h) {
-        Name = n;
-        Description = d;
-        Look = l;
-        Height = h;
-        lookArray = Look.ToCharArray();
+        name = n;
+        description = d;
+        look = l;
+        height = h;
+        lookArray = look.ToCharArray();
         suspectBody = new GameObject();
-        suspectBody.name = Name;
+        suspectBody.name = name;
         bodySR = suspectBody.AddComponent<SpriteRenderer>();
         suspectHair = new GameObject();
-        suspectHair.name = Name + " hair";
+        suspectHair.name = name + " hair";
         suspectHair.transform.SetParent(suspectBody.transform);
         hairSR = suspectHair.AddComponent<SpriteRenderer>();
         Sprite body;
