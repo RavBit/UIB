@@ -100,6 +100,16 @@ public class Web_Manager : MonoBehaviour
             q.Clues.Remove(q.Clues[q.Clues.Count - 1]);
             Event_Manager.Add_Quest(q);
         }
+<<<<<<< HEAD
+        else
+        {
+            Debug.LogError("ERROR FATAL");
+        }
+       // Quest_Manager.SetQuestList(_questdata);
+        Event_Manager.Set_QuestList(_questdata);
+        //_questdata.Clear();
+=======
         Event_Manager.Draw_Quest(DRAW_OBJECTS.Quest);
+>>>>>>> 588dd3c0296194261d085c2f9cd4f9a242e7c72a
     }
 }
