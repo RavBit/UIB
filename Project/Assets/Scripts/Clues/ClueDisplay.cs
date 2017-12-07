@@ -7,23 +7,25 @@ public class ClueDisplay : MonoBehaviour {
 
     public ClueScript cluePrefab;
     
-    public ClueManager clueManager;
-    
-    
     void Start () {
-        Display();
+        StartCoroutine("Display");
 	}
 	
-	public void Display() {
+	public IEnumerator Display() {
         foreach (Transform child in transform) {
             Destroy(child.gameObject);
         }
+
+        yield return new WaitForSeconds(1);
+
         foreach (ClueEntry clue in ClueManager.ins.ClueDB.clues) {
-            if (!clue.isFound) { 
-                ClueScript newClue = Instantiate(cluePrefab) as ClueScript;
-                newClue.transform.SetParent(transform, false);
-                newClue.Display(clue);
+            ClueScript newClue = Instantiate(cluePrefab) as ClueScript;
+            if (clue.isFound) {
+                newClue.gameObject.SetActive(false);
             }
+            newClue.transform.SetParent(transform, false);
+            newClue.Display(clue);
         }
     }
+    
 }

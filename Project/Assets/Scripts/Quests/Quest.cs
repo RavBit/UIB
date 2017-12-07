@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class Quest {
@@ -23,6 +23,10 @@ public class Quest {
         foreach (OnlineMapsMarker marker in map.markers) {
             if (marker.label == name)
                 marker.OnClick += OnMarkerClick;
+        }
+
+        foreach(Suspect suspect in Suspects) {
+            Suspect S = new Suspect(suspect.name, suspect.description, suspect.look, suspect.height);
         }
 
         // Add OnClick events to dynamic markers

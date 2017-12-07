@@ -68,6 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4520469250680312}
   - component: {fileID: 114280046534094574}
+  - component: {fileID: 114755746179422526}
   m_Layer: 0
   m_Name: Suspect
   m_TagString: Untagged
@@ -108,7 +109,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1865400150019992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.09, y: 0, z: -4.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4707523045000466}
@@ -138,12 +139,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1865400150019992}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d585e720d838fb2498cca621fe1d69e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d76cc185bea9d746bfded6f1791ff7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hair: {fileID: 1682878721302566}
   face: {fileID: 1769093843711518}
   clothes: {fileID: 1513193080965372}
+--- !u!114 &114755746179422526
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1865400150019992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6864f2d305d614a45806ea4f557c4997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  suspectPrefab: {fileID: 1865400150019992}
 --- !u!212 &212284465320025586
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -186,7 +203,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!212 &212425157442996048
 SpriteRenderer:
@@ -230,7 +247,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!212 &212880508737072358
 SpriteRenderer:
@@ -274,5 +291,5 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
