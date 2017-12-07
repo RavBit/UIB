@@ -4,6 +4,7 @@
 public class Quest {
     public int id;
     public string name;
+    public string description;
     public float start_x;
     public float start_y;
     public int curdialog;

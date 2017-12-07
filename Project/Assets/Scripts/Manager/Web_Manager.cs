@@ -60,6 +60,6 @@ public class Web_Manager : MonoBehaviour
             Debug.LogError("ERROR FATAL");
         }
         Event_Manager.Set_QuestList(_questdata);
-        //_questdata.Clear();
+        Event_Manager.Draw_Quest(DRAW_OBJECTS.Quest);
     }
 }

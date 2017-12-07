@@ -53,6 +53,8 @@ public class Quest_Manager : MonoBehaviour {
         Quests.Add(quest);
     }
     public void SetQuest(List<Quest> ql) {
+        Debug.Log("Set quest list " + ql.Count);
+        Quests = new List<Quest>();
         Quests = ql;
     }
 
@@ -69,7 +71,7 @@ public class Quest_Manager : MonoBehaviour {
         foreach (Quest quest in Quests) {
             if(quest.id == id) {
                 DialogScreen.gameObject.SetActive(toggle);
-                //Event_Manager.Dialog_Load(quest.name, quest.dialogs[quest.curdialog]);
+                Event_Manager.Dialog_Load(quest.name, quest.description, quest.Suspects);
             }
         }
     }
