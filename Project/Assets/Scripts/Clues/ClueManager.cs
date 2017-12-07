@@ -11,16 +11,25 @@ using System.IO;
  * which clues are found.
  */
 
-    
+
 public class ClueManager : MonoBehaviour {
+
+    public static GameObject canvas;
 
     //make this a better singleton pls
     public static ClueManager ins;
     void Awake() {
         ins = this;
+
+        canvas = GameObject.FindWithTag("ClueCanvas");
+        canvas.SetActive(false);
     }
 
     public ClueDatabase ClueDB;
+
+    void Start() {
+        Load();
+    }
     
     //save function
     public void Save() {

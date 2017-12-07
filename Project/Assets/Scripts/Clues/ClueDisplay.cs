@@ -19,9 +19,11 @@ public class ClueDisplay : MonoBehaviour {
             Destroy(child.gameObject);
         }
         foreach (ClueEntry clue in ClueManager.ins.ClueDB.clues) {
-            ClueScript newClue = Instantiate(cluePrefab) as ClueScript;
-            newClue.transform.SetParent(transform, false);
-            newClue.Display(clue);
+            if (!clue.isFound) { 
+                ClueScript newClue = Instantiate(cluePrefab) as ClueScript;
+                newClue.transform.SetParent(transform, false);
+                newClue.Display(clue);
+            }
         }
     }
 }

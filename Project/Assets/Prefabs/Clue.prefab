@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4846664072450620}
   - component: {fileID: 212150118186751884}
-  - component: {fileID: 114216912080854140}
   - component: {fileID: 61372857773334538}
+  - component: {fileID: 114916202028456250}
   m_Layer: 0
   m_Name: Clue
   m_TagString: Untagged
@@ -67,7 +67,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.94, y: 4.56}
   m_EdgeRadius: 0
---- !u!114 &114216912080854140
+--- !u!114 &114916202028456250
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,14 +75,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1340476274692242}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 783b2f7691c86d34c95d50ce0bb1e390, type: 3}
+  m_Script: {fileID: 11500000, guid: e9566939256b18e478ee1cfe2d76f338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   clueName: {fileID: 0}
-  isFound: {fileID: 0}
   description: {fileID: 0}
-  canvas: {fileID: 0}
-  clueText: 
   target: {fileID: 0}
 --- !u!212 &212150118186751884
 SpriteRenderer:

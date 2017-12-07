@@ -13,11 +13,17 @@ using System.Xml.Serialization;
 
 public class ClueScript : MonoBehaviour {
 
-    //public Text clueName, isFound, description;
+    private Text[] texts;
+    public Text clueName, description;
     public Transform target;
+    private ClueEntry clueData;
+    private GameObject objectTarget;
 
     void Start() {
         target = GameObject.FindWithTag("MainCamera").gameObject.transform;
+        texts = ClueManager.canvas.GetComponentsInChildren<Text>();
+        clueName = texts[0];
+        description = texts[1];
     }
 
     void Update() {
@@ -26,20 +32,18 @@ public class ClueScript : MonoBehaviour {
     }
 
     void OnMouseDown() {
-
+        clueData.isFound = true;
         gameObject.SetActive(false);
+        ClueManager.canvas.SetActive(true);
+
+        clueName.text = clueData.clueName;
+        description.text = clueData.description;
         //activate ClueCanvas
         //set this clue to found
         //save xml file
     }
 
     public void Display(ClueEntry entry) {
-        Debug.Log(entry.clueName);
-        Debug.Log(entry.isFound);
-        Debug.Log(entry.description);
-        Debug.Log(entry.isKeyClue);
-        //clueName.text = entry.clueName;
-        //isFound.text = entry.isFound.ToString();
-        //description.text = entry.description;
+        clueData = entry;
     }
 }
