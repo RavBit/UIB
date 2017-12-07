@@ -35,7 +35,7 @@ public class ClueManager : MonoBehaviour {
     public void Save() {
         //open xml file
         XmlSerializer serializer = new XmlSerializer(typeof(ClueDatabase));
-        FileStream stream = new FileStream(Application.dataPath + "/StreamingAssets/ClueData.xml", FileMode.Create);
+        FileStream stream = new FileStream(Application.dataPath + "ClueData", FileMode.Create);
         serializer.Serialize(stream, ClueDB);
         stream.Close();
     }
@@ -43,7 +43,7 @@ public class ClueManager : MonoBehaviour {
     //load function
     public void Load() {
         XmlSerializer serializer = new XmlSerializer(typeof(ClueDatabase));
-        FileStream stream = new FileStream(Application.dataPath + "/StreamingAssets/ClueData.xml", FileMode.Open);
+        FileStream stream = new FileStream(Application.dataPath + "ClueData", FileMode.Open);
         ClueDB = serializer.Deserialize(stream) as ClueDatabase;
 
         stream.Close();

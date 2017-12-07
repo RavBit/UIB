@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1426234248432848}
+  m_IsPrefabParent: 1
+--- !u!1 &1426234248432848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4350510437117468}
+  - component: {fileID: 114123168196516386}
+  - component: {fileID: 114757478425184850}
+  m_Layer: 0
+  m_Name: ClueManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4350510437117468
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1426234248432848}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114123168196516386
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1426234248432848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9f3bb778058af4fbf3c0e2f599128f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClueDB:
+    clues:
+    - clueName: Vingerafdruk
+      isFound: 0
+      description: Zou deze van de verdachte zijn?
+      isKeyClue: 1
+    - clueName: Clue 2
+      isFound: 0
+      description: Zou deze van de verdachte zijn?
+      isKeyClue: 0
+    - clueName: Clue 3
+      isFound: 0
+      description: Zou deze van de verdachte zijn?
+      isKeyClue: 0
+--- !u!114 &114757478425184850
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1426234248432848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19f5b4a39d11234ba13e36e521d22d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cluePrefab: {fileID: 114916202028456250, guid: 99519f3bd0bc813488708b43ae36b1e0,
+    type: 2}
+  clueManager: {fileID: 114123168196516386}
