@@ -475,12 +475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783b2f7691c86d34c95d50ce0bb1e390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clueName: 
-  isFound: 0
-  clueText: Een verdachte scheur in de wand.
-  targetText: {fileID: 2146514304}
-  target: {fileID: 501262118}
-  canvas: {fileID: 1039136635}
+  target: {fileID: 0}
 --- !u!212 &370145434
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -597,7 +592,7 @@ GameObject:
   - component: {fileID: 501262114}
   m_Layer: 0
   m_Name: ARCamera
-  m_TagString: Untagged
+  m_TagString: VuforiaCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -738,12 +733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783b2f7691c86d34c95d50ce0bb1e390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clueName: 
-  isFound: 0
-  clueText: Een voetafdruk van schoen maat 41.
-  targetText: {fileID: 2146514304}
-  target: {fileID: 501262118}
-  canvas: {fileID: 1039136635}
+  target: {fileID: 0}
 --- !u!212 &551852816
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -886,7 +876,7 @@ GameObject:
   - component: {fileID: 1039136633}
   m_Layer: 5
   m_Name: ClueCanvas
-  m_TagString: Untagged
+  m_TagString: ClueCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1039,12 +1029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783b2f7691c86d34c95d50ce0bb1e390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clueName: 
-  isFound: 0
-  clueText: Je hebt een rode haar gevonden.
-  targetText: {fileID: 2146514304}
   target: {fileID: 501262118}
-  canvas: {fileID: 1039136635}
 --- !u!212 &1227535908
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1320,12 +1305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783b2f7691c86d34c95d50ce0bb1e390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clueName: 
-  isFound: 0
-  clueText: 
-  targetText: {fileID: 2146514304}
-  target: {fileID: 501262118}
-  canvas: {fileID: 1039136635}
+  target: {fileID: 0}
 --- !u!212 &1592280027
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1381,6 +1361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1606342633}
   - component: {fileID: 1606342632}
+  - component: {fileID: 1606342634}
   m_Layer: 0
   m_Name: ClueManager
   m_TagString: Untagged
@@ -1396,9 +1377,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1606342631}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 479b09afcd612a841bef91b63ee7d237, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b9f3bb778058af4fbf3c0e2f599128f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ClueDB:
+    clues:
+    - clueName: Vingerafdruk
+      isFound: 0
+      description: Zou deze van de verdachte zijn?
+      isKeyClue: 1
+    - clueName: Clue 2
+      isFound: 0
+      description: Zou deze van de verdachte zijn?
+      isKeyClue: 0
+    - clueName: Clue 3
+      isFound: 0
+      description: Zou deze van de verdachte zijn?
+      isKeyClue: 0
 --- !u!4 &1606342633
 Transform:
   m_ObjectHideFlags: 0
@@ -1417,6 +1412,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1606342634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1606342631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19f5b4a39d11234ba13e36e521d22d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cluePrefab: {fileID: 114216912080854140, guid: 99519f3bd0bc813488708b43ae36b1e0,
+    type: 2}
+  clueManager: {fileID: 1606342632}
 --- !u!1 &1610107402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1823,6 +1832,17 @@ MonoBehaviour:
       - m_Target: {fileID: 1703444187}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1606342632}
+        m_MethodName: Save
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
