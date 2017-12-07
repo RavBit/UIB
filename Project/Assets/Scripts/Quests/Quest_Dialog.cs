@@ -5,8 +5,8 @@ public class Quest_Dialog : MonoBehaviour {
     [Header("UI Attributes")]
     public Text Name;
     public Text Dialog;
-    public GameObject Suspects;
-    public Suspect_Item Suspect_Item;
+    public GameObject Suspect_Item;
+    public GameObject Suspect_Container;
     private void Awake() {
         Event_Manager.DialogLoad += SetDialog;
     }
@@ -18,8 +18,9 @@ public class Quest_Dialog : MonoBehaviour {
 
     public void InitSuspects(List<Suspect> _suspect) {
         foreach(Suspect sus in _suspect) {
-
-            Debug.Log("");//Instantiate(brick, Vector3(x, y, 0), Quaternion.identity);
+            GameObject g = Instantiate(Suspect_Item, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+            g.GetComponent<Suspect_Item>().Name.text = sus.name;
+            g.transform.parent = Suspect_Container.transform;
         }
     }
 	
