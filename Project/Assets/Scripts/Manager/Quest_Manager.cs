@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Quest_Manager : MonoBehaviour {
     [Header("Quests List")]
-    [SerializeField]
-    public  List<Quest> Quests;
+    public List<Quest> Quests;
+
     [Header("UI Objects")]
     public Texture2D RedMarker;
     public Texture2D GreenMarker;
@@ -41,6 +41,7 @@ public class Quest_Manager : MonoBehaviour {
         Event_Manager.DrawQuests += DrawQuests;
         Event_Manager.ToggleDialog += DrawDialog;
         Event_Manager.DistanceCheck += CheckDistanceQuest;
+        Event_Manager.SetQuestList += SetQuest;
     }
     static void Load_Quest()
     {
@@ -51,18 +52,13 @@ public class Quest_Manager : MonoBehaviour {
         Debug.Log("adding: " + quest.name);
         Quests.Add(quest);
     }
-<<<<<<< HEAD
     public void SetQuest(List<Quest> ql) {
-        Quests = new List<Quest>();
         Quests = ql;
     }
-=======
->>>>>>> 588dd3c0296194261d085c2f9cd4f9a242e7c72a
 
     public void DrawQuests() {
         foreach(Quest quest in Quests)
         {
-            
             Event_Manager.Add_QuestMarker(quest);
             //TODO: MAKE MARKER
             //Event_Manager.Add_QuestCircles(quest);
@@ -73,7 +69,7 @@ public class Quest_Manager : MonoBehaviour {
         foreach (Quest quest in Quests) {
             if(quest.id == id) {
                 DialogScreen.gameObject.SetActive(toggle);
-                Event_Manager.Dialog_Load(quest.name, quest.dialogs[quest.curdialog]);
+                //Event_Manager.Dialog_Load(quest.name, quest.dialogs[quest.curdialog]);
             }
         }
     }

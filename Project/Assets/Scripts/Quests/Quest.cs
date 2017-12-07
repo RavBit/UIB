@@ -7,7 +7,7 @@ public class Quest {
     public float start_x;
     public float start_y;
     public int curdialog;
-    public List<string> dialogs;
+    public List<Witness> witness;
     private OnlineMapsMarker dynamicMarker;
     public bool ClickAble;
     public List<Suspect> Suspects;

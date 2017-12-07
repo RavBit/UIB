@@ -20,6 +20,10 @@ public class Event_Manager : MonoBehaviour {
     public delegate void ToggleObjects(bool toggle, int name);
     public static event ToggleObjects ToggleDialog;
 
+    //Set Quests in the quest manager
+    public delegate void QuestListSet(System.Collections.Generic.List<Quest> ql);
+    public static event QuestListSet SetQuestList;
+
     //Delegate to load in dialogs
     public delegate void Checks();
     public static event Checks DistanceCheck;
@@ -66,6 +70,9 @@ public class Event_Manager : MonoBehaviour {
     }
     public static void Distance_Check() {
         DistanceCheck();
+    }
+    public static void Set_QuestList(System.Collections.Generic.List<Quest> ql) {
+        SetQuestList(ql);
     }
 }
 public enum LOAD_OBJECTS
