@@ -15,7 +15,9 @@ using System.IO;
 public class ClueManager : MonoBehaviour {
 
     public static GameObject canvas;
-
+    public ClueDatabase ClueDB;
+    
+    
     //make this a better singleton pls
     public static ClueManager ins;
     void Awake() {
@@ -23,11 +25,6 @@ public class ClueManager : MonoBehaviour {
 
         canvas = GameObject.FindWithTag("ClueCanvas");
         canvas.SetActive(false);
-    }
-
-    public ClueDatabase ClueDB;
-
-    void Start() {
         Load();
     }
     
@@ -35,7 +32,8 @@ public class ClueManager : MonoBehaviour {
     public void Save() {
         //open xml file
         XmlSerializer serializer = new XmlSerializer(typeof(ClueDatabase));
-        FileStream stream = new FileStream(Application.dataPath + "ClueData", FileMode.Create);
+        FileStream stream = new FileStream(Application.persistentDataPath + "/ClueData.xml", FileMode.Create);
+        
         serializer.Serialize(stream, ClueDB);
         stream.Close();
     }
@@ -43,10 +41,15 @@ public class ClueManager : MonoBehaviour {
     //load function
     public void Load() {
         XmlSerializer serializer = new XmlSerializer(typeof(ClueDatabase));
-        FileStream stream = new FileStream(Application.dataPath + "ClueData", FileMode.Open);
+        FileStream stream = new FileStream(Application.persistentDataPath + "/ClueData.xml", FileMode.Open);
+        if (stream == null) {
+            Save();
+        }
+
         ClueDB = serializer.Deserialize(stream) as ClueDatabase;
 
         stream.Close();
+
     }
 
 }
