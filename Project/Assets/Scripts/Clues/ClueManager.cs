@@ -27,7 +27,10 @@ public class ClueManager : MonoBehaviour {
         canvas.SetActive(false);
         Load();
     }
-    
+    void LoadInClues()
+    {
+
+    }
     //save function
     public void Save() {
         //open xml file
@@ -52,17 +55,4 @@ public class ClueManager : MonoBehaviour {
 
     }
 
-}
-
-[System.Serializable]
-public class ClueEntry {
-    public string clueName;
-    public bool isFound;
-    public string description;
-    public bool isKeyClue;
-}
-
-[System.Serializable]
-public class ClueDatabase {
-    public List<ClueEntry> clues = new List<ClueEntry>();
 }

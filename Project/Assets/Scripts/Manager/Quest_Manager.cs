@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Quest_Manager : MonoBehaviour {
+    [Header("Current Quest")]
+    public Quest CurrentQuest;
     [Header("Quests List")]
     public List<Quest> Quests;
 
@@ -16,6 +18,15 @@ public class Quest_Manager : MonoBehaviour {
         Setup();
         Load_Quest();
 
+    }
+    void Setup()
+    {
+        //Pool to setup the events in
+        Event_Manager.AddQuest += AddQuest;
+        Event_Manager.DrawQuests += DrawQuests;
+        Event_Manager.ToggleDialog += DrawDialog;
+        Event_Manager.DistanceCheck += CheckDistanceQuest;
+        Event_Manager.SetQuestList += SetQuest;
     }
     void CheckDistanceQuest() {
         foreach(Quest quest in Quests) {
@@ -34,15 +45,6 @@ public class Quest_Manager : MonoBehaviour {
             }
         }
     }
-    void Setup()
-    {
-        //Pool to setup the events in
-        Event_Manager.AddQuest += AddQuest;
-        Event_Manager.DrawQuests += DrawQuests;
-        Event_Manager.ToggleDialog += DrawDialog;
-        Event_Manager.DistanceCheck += CheckDistanceQuest;
-        Event_Manager.SetQuestList += SetQuest;
-    }
     static void Load_Quest()
     {
         Web_Manager.instance.StartCoroutine("LoadQuests");
@@ -58,6 +60,11 @@ public class Quest_Manager : MonoBehaviour {
         Quests = ql;
     }
 
+    public void SetCurrentQuest(Quest _quest)
+    {
+        CurrentQuest = _quest;
+    }
+
     public void DrawQuests() {
         foreach(Quest quest in Quests)
         {
@@ -71,7 +78,7 @@ public class Quest_Manager : MonoBehaviour {
         foreach (Quest quest in Quests) {
             if(quest.id == id) {
                 DialogScreen.gameObject.SetActive(toggle);
-                Event_Manager.Dialog_Load(quest.name, quest.description, quest.Suspects);
+                Event_Manager.Dialog_Load(quest, quest.Suspects);
             }
         }
     }

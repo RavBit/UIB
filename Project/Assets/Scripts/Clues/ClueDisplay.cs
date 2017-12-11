@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class ClueDisplay : MonoBehaviour {
 
     public ClueScript cluePrefab;
+    public Save_Manager SM;
     
-    void Start () {
+    public void StartDislay () {
         StartCoroutine("Display");
 	}
 	
@@ -18,9 +19,9 @@ public class ClueDisplay : MonoBehaviour {
 
         yield return new WaitForSeconds(1);
 
-        foreach (ClueEntry clue in ClueManager.ins.ClueDB.clues) {
+        foreach (Quest_Clues clue in SM.ClueDB.clues) {
             ClueScript newClue = Instantiate(cluePrefab) as ClueScript;
-            if (clue.isFound) {
+            if (clue.found == 1) {
                 newClue.gameObject.SetActive(false);
             }
             newClue.transform.SetParent(transform, false);

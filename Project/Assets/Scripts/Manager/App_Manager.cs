@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class App_Manager : MonoBehaviour {
     public static App_Manager instance;
-
+    public User User;
     [Header("Username of logged in User")]
     [SerializeField]
     private string username;
@@ -29,6 +29,11 @@ public class App_Manager : MonoBehaviour {
         get {
             return username;
         }
+    }
+    
+    public void SetUser(User u)
+    {
+        User = u;
     }
 
     // Log out the user

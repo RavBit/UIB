@@ -28,7 +28,7 @@ public class Event_Manager : MonoBehaviour {
     public delegate void Checks();
     public static event Checks DistanceCheck;
 
-    public delegate void LoadDialog(string _name, string _description, System.Collections.Generic.List<Suspect> _suspects);
+    public delegate void LoadDialog(Quest _quest, System.Collections.Generic.List<Suspect> _suspects);
     public static event LoadDialog DialogLoad;
     //Loads in Objects in the scene and deletes other markers or data
     public static void Load_Objects(LOAD_OBJECTS lo) {
@@ -59,8 +59,8 @@ public class Event_Manager : MonoBehaviour {
                 break;
         }
     }
-    public static void Dialog_Load(string _name, string _description, System.Collections.Generic.List<Suspect> _suspects) {
-        DialogLoad(_name, _description, _suspects);
+    public static void Dialog_Load(Quest _quest, System.Collections.Generic.List<Suspect> _suspects) {
+        DialogLoad(_quest, _suspects);
     }
     public static void Add_QuestMarker(Quest quest) {
         AddQuestMarker(quest);

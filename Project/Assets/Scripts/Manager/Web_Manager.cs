@@ -62,4 +62,30 @@ public class Web_Manager : MonoBehaviour
         Event_Manager.Set_QuestList(_questdata);
         Event_Manager.Draw_Quest(DRAW_OBJECTS.Quest);
     }
+    public IEnumerator StartQuest(Quest CurQuest)
+    {
+        WWWForm quest_id = new WWWForm();
+        quest_id.AddField("quest_id", CurQuest.id);
+        quest_id.AddField("user_id", App_Manager.instance.User.id);
+        //Command gescheiden bestand CSV
+        // ! https://www.mysql.com/products/workbench/
+        WWW questdata = new WWW("http://81.169.177.181/UIB/set_quest.php", quest_id);
+        yield return questdata;
+        Debug.Log(questdata.text);
+        if (string.IsNullOrEmpty(questdata.error))
+        {
+            CurQuestChecker CQC = JsonUtility.FromJson<CurQuestChecker>(questdata.text);
+            Debug.Log("CQC : " + CQC.success);
+            if(CQC.success)
+            {
+                Debug.Log("Quest started");
+            }
+        }
+    }
+}
+
+public class CurQuestChecker
+{
+    public bool success;
+    public string error;
 }

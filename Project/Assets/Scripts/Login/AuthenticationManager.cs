@@ -5,6 +5,15 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 
+[System.Serializable]
+public class User
+{
+    public bool success;
+    public string error;
+    public string email;
+    public int id;
+    // feel free to add userName....
+}
 public class AuthenticationManager : MonoBehaviour {
     public GameObject mainMenu;
 
@@ -23,12 +32,6 @@ public class AuthenticationManager : MonoBehaviour {
 
     WWWForm form;
     // Use this for initialization
-    public class User {
-        public bool success;
-        public string error;
-        public string email;
-        // feel free to add userName....
-    }
     void Start () {
         Login_Feedback.text = "";
 
@@ -54,11 +57,14 @@ public class AuthenticationManager : MonoBehaviour {
         Debug.Log(w.text);
         if (string.IsNullOrEmpty(w.error)) {
             User user = JsonUtility.FromJson<User>(w.text);
+            Debug.Log("username" + user.id);
             if (user.success == true) {
                 if (user.error != "") {
                     Login_Feedback.text = user.error;
                 } else {
                     Login_Feedback.text = "login successful.";
+                    App_Manager.instance.SetUser(user);
+                    SceneManager.LoadScene("Home", LoadSceneMode.Single);
                 }
             } else {
                 Login_Feedback.text = "An error occured";

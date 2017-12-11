@@ -16,7 +16,7 @@ public class ClueScript : MonoBehaviour {
     private Text[] texts;
     public Text clueName, description;
     public Transform target;
-    private ClueEntry clueData;
+    private Quest_Clues clueData;
     private GameObject objectTarget;
 
     void Start() {
@@ -34,17 +34,17 @@ public class ClueScript : MonoBehaviour {
     void OnMouseDown() {
 
         //set this clue to found and make it invisible
-        clueData.isFound = true;
+        clueData.found = 1;
         gameObject.SetActive(false);
         //activate ClueCanvas
         ClueManager.canvas.SetActive(true);
 
-        clueName.text = clueData.clueName;
+        clueName.text = clueData.clue;
         description.text = clueData.description;
     }
 
-    public void Display(ClueEntry entry) {
-        if (entry.isFound) {
+    public void Display(Quest_Clues entry) {
+        if (entry.found == 1) {
             gameObject.SetActive(false);
         }
         clueData = entry;
