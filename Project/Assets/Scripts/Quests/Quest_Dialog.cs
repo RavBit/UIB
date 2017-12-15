@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 public class Quest_Dialog : MonoBehaviour {
@@ -24,9 +24,10 @@ public class Quest_Dialog : MonoBehaviour {
     }
     public void InitSuspects(List<Suspect> _suspect) {
         foreach(Suspect sus in _suspect) {
-            GameObject g = Instantiate(Suspect_Item, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-            g.GetComponent<Suspect_Item>().Name.text = sus.name;
-            g.transform.parent = Suspect_Container.transform;
+            Suspect S = new Suspect(sus.name, sus.description, sus.look, sus.height);
+            //GameObject g = Instantiate(Suspect_Item, Suspect_Container.transform.position, Quaternion.identity) as GameObject;
+            //g.GetComponent<Suspect_Item>().Name.text = sus.name;
+            //g.transform.SetParent(Suspect_Container.transform);
         }
     }
 	

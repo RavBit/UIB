@@ -84,6 +84,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec237a978d7f0bb479f73a8500e34fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suspectName: 
+  description: 
+  look: 
+  height: 0
+  hairRenderer: {fileID: 0}
+  faceRenderer: {fileID: 0}
+  clothesRenderer: {fileID: 0}
+  suspectBody: {fileID: 0}
+  suspectHair: {fileID: 0}
   Name: {fileID: 114798448053842832}
 --- !u!114 &114798448053842832
 MonoBehaviour:

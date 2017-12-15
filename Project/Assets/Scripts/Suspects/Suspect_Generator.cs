@@ -15,14 +15,9 @@ public class Suspect_Generator : MonoBehaviour {
     public GameObject suspectPrefab;
     private Suspect suspect;
 
-    int randomHair;
-    int randomFace;
-    int randomClothes;
-
     //fill the lists
     void OnEnable() {
         suspect = GetComponent<Suspect>();
-        GenerateSuspect();
         suspect.SetHairColor(GenerateColor());
         suspect.SetFaceColor(GenerateColor());
         suspect.SetClothesColor(GenerateColor());
@@ -34,17 +29,5 @@ public class Suspect_Generator : MonoBehaviour {
         float randomB = UnityEngine.Random.Range(0f, 1f);
 
         return new Color(randomR, randomG, randomB);
-    }
-
-    public void GenerateSuspect() {
-        randomHair = UnityEngine.Random.Range(0, 3);
-        randomFace = UnityEngine.Random.Range(0, 3);
-        randomClothes = UnityEngine.Random.Range(0, 3);
-
-        Sprite hairSprite = sprites[randomHair];
-        Sprite faceSprite = sprites[randomFace];
-        Sprite clothesSprite = sprites[randomClothes];
-
-        suspect.SetSuspect(hairSprite, faceSprite, clothesSprite);
     }
 }

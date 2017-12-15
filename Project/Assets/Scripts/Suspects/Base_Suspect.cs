@@ -19,21 +19,23 @@ public class Base_Suspect {
     private bool isCulprit;
     private char[] lookArray;
 
-    //NEW ADDED FOR DATABASE DATA STORED
-
     public Base_Suspect(string n, string d, string l, float h) {
         name = n;
         description = d;
         look = l;
         height = h;
         lookArray = look.ToCharArray();
+
+
         suspectBody = new GameObject();
+        suspectBody.transform.position = new Vector3(115, 720, 0);
         suspectBody.name = name;
         bodySR = suspectBody.AddComponent<SpriteRenderer>();
         suspectHair = new GameObject();
         suspectHair.name = name + " hair";
         suspectHair.transform.SetParent(suspectBody.transform);
         hairSR = suspectHair.AddComponent<SpriteRenderer>();
+
         Sprite body;
         Sprite hair;
 
@@ -50,13 +52,9 @@ public class Base_Suspect {
             hair = Resources.Load<Sprite>("Sprites/Hair/Triangle");
         }
         hairSR.sprite = hair;
-    }
 
-    public void SetSuspect(Sprite newHair, Sprite newFace, Sprite newClothes) {
-        hairRenderer.sprite = newHair;
-        faceRenderer.sprite = newFace;
-        clothesRenderer.sprite = newClothes;
     }
+    
 
     public void SetHairColor(Color color) {
         hairRenderer.color = color;

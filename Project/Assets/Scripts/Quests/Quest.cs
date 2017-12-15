@@ -26,7 +26,7 @@ public class Quest {
         }
 
         foreach(Suspect suspect in Suspects) {
-            Suspect S = new Suspect(suspect.name, suspect.description, suspect.look, suspect.height);
+            //Suspect_Item SI = new Suspect_Item(suspect.name, suspect.description, suspect.look, suspect.height);
         }
 
         // Add OnClick events to dynamic markers
