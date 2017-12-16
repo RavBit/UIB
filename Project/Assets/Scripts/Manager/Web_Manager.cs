@@ -24,6 +24,8 @@ public class Web_Manager : MonoBehaviour
     }
     public IEnumerator LoadQuests()
     {
+        _questdata.Clear();
+        Debug.Log("RELOADING QUESTS");
         //Command gescheiden bestand CSV
         // ! https://www.mysql.com/products/workbench/
         WWW questdata = new WWW("http://81.169.177.181/UIB/request_quests.php");
@@ -60,7 +62,36 @@ public class Web_Manager : MonoBehaviour
             Debug.LogError("ERROR FATAL");
         }
         Event_Manager.Set_QuestList(_questdata);
-        Event_Manager.Draw_Quest(DRAW_OBJECTS.Quest);
+        WWWForm q_d = new WWWForm();
+        q_d.AddField("user_id", App_Manager.instance.User.id);
+        //Command gescheiden bestand CSV
+        // ! https://www.mysql.com/products/workbench/
+        WWW qd = new WWW("http://81.169.177.181/UIB/get_quest.php", q_d);
+        yield return qd;
+        Debug.Log(qd.text);
+        if (string.IsNullOrEmpty(qd.error))
+        {
+            CurStartQuestChecker CSQC = JsonUtility.FromJson<CurStartQuestChecker>(qd.text);
+            Debug.Log("CQC : " + CSQC.success);
+            if (CSQC.success)
+            {
+                foreach (Quest quest in _questdata)
+                {
+                    if (quest.id == CSQC.quest_id)
+                    {
+                        Event_Manager.Load_QuestClues();
+                        Event_Manager.Set_CurrentQuest(quest);
+                        Event_Manager.Set_CurrentQuestClues(Event_Manager.Get_XML_Clues());
+                        
+                    }
+                }
+            }
+            else
+            {
+                Debug.Log("No Quest started");
+                Event_Manager.Draw_Quest(DRAW_OBJECTS.Quest);
+            }
+        }
     }
     public IEnumerator StartQuest(Quest CurQuest)
     {
@@ -79,6 +110,8 @@ public class Web_Manager : MonoBehaviour
             if(CQC.success)
             {
                 Debug.Log("Quest started");
+                Event_Manager.Set_CurrentQuest(CurQuest);
+                Event_Manager.Load_QuestCluesF();
             }
         }
     }
@@ -88,4 +121,10 @@ public class CurQuestChecker
 {
     public bool success;
     public string error;
+}
+public class CurStartQuestChecker
+{
+    public bool success;
+    public string error;
+    public int quest_id;
 }

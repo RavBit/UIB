@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Generate_Points : MonoBehaviour {
+
     /// <summary>
     /// Google API Key
     /// </summary>
     public string apiKey;
-
-    public void Generate() {
+    public int tempcounter = 0;
+    public int counter = 0;
+    public void Generate(int _counter) {
         double x = OnlineMapsLocationService.instance.GetLocationX();
         double y = OnlineMapsLocationService.instance.GetLocationY();
+        counter = _counter;
         // Makes a request to Google Places API.
         OnlineMapsGooglePlaces.FindNearby(
             apiKey,
@@ -39,12 +42,15 @@ public class Generate_Points : MonoBehaviour {
         }
 
         List<OnlineMapsMarker> markers = new List<OnlineMapsMarker>();
-
         foreach (OnlineMapsGooglePlacesResult result in results) {
-
-            // Create a marker at the location of the result.
-            OnlineMapsMarker marker = OnlineMaps.instance.AddMarker(result.location, result.name);
-            markers.Add(marker);
+            if (tempcounter < counter)
+            {
+                tempcounter++;
+                Debug.Log("TEMPCOUNTER " + tempcounter + " AND COUNTER " + counter);
+                // Create a marker at the location of the result.
+                OnlineMapsMarker marker = OnlineMaps.instance.AddMarker(result.location, result.name);
+                markers.Add(marker);
+            }
         }
     }
 }

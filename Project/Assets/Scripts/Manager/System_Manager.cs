@@ -13,11 +13,12 @@ public class System_Manager : MonoBehaviour {
 
     void setup()
     {
-        string _username = App_Manager.instance.GetUsername;
+        /*string _username = App_Manager.instance.GetUsername;
         if (_username != null)
             usernameTag.text = "" + _username;
         if (_username == null)
             Debug.LogError("Login failed! Please sign in again!");
+            */
     }
     public void Logout()
     {

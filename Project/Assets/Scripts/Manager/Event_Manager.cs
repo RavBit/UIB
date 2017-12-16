@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class Event_Manager : MonoBehaviour {
 
@@ -30,6 +31,24 @@ public class Event_Manager : MonoBehaviour {
 
     public delegate void LoadDialog(Quest _quest, System.Collections.Generic.List<Suspect> _suspects);
     public static event LoadDialog DialogLoad;
+
+    //Set current quest
+    public delegate void CurrentQuestSet(Quest _q);
+    public static event CurrentQuestSet SetCurrentQuest;
+
+
+    //Set Quest clues
+    public delegate void CluesQuestSet(List<Quest_Clues> QL);
+    public static event CluesQuestSet SetCurrentQuestClues;
+    public delegate List<Quest_Clues> CluesGet();
+    public static event CluesGet GetClues;
+    public static event CluesGet Get_LoadedClues;
+
+    //Save and load the Quests
+    public delegate void SaveAndLoad();
+    public static event SaveAndLoad LoadQuestClues;
+    public static event SaveAndLoad LoadQuestCluesF;
+    public static event SaveAndLoad SaveQuestClues;
     //Loads in Objects in the scene and deletes other markers or data
     public static void Load_Objects(LOAD_OBJECTS lo) {
         switch (lo) {
@@ -73,6 +92,35 @@ public class Event_Manager : MonoBehaviour {
     }
     public static void Set_QuestList(System.Collections.Generic.List<Quest> ql) {
         SetQuestList(ql);
+    }
+    public static void Set_CurrentQuest(Quest q)
+    {
+        SetCurrentQuest(q);
+    }
+    public static List<Quest_Clues> Get_Clues()
+    {
+        return GetClues();
+    }
+    public static void Set_CurrentQuestClues(List<Quest_Clues> QC)
+    {
+        SetCurrentQuestClues(QC);
+    }
+
+    public static List<Quest_Clues> Get_XML_Clues()
+    {
+        return Get_LoadedClues();
+    }
+    public static void Load_QuestCluesF()
+    {
+        LoadQuestCluesF();
+    }
+    public static void Load_QuestClues()
+    {
+        LoadQuestClues();
+    }
+    public static void Save_QuestClues()
+    {
+        SaveQuestClues();
     }
 }
 public enum LOAD_OBJECTS

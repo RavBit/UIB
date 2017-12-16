@@ -27,6 +27,9 @@ public class Quest_Manager : MonoBehaviour {
         Event_Manager.ToggleDialog += DrawDialog;
         Event_Manager.DistanceCheck += CheckDistanceQuest;
         Event_Manager.SetQuestList += SetQuest;
+        Event_Manager.SetCurrentQuest += SetCurrentQuest;
+        Event_Manager.GetClues += GetClues;
+        Event_Manager.SetCurrentQuestClues += SetCurrentQuestClues;
     }
     void CheckDistanceQuest() {
         foreach(Quest quest in Quests) {
@@ -45,9 +48,20 @@ public class Quest_Manager : MonoBehaviour {
             }
         }
     }
-    static void Load_Quest()
+    public static void Load_Quest()
     {
+        Web_Manager.instance.StopCoroutine("LoadQuests");
         Web_Manager.instance.StartCoroutine("LoadQuests");
+    }
+
+    void SetCurrentQuestClues(List<Quest_Clues> clues)
+    {
+        CurrentQuest.Clues = clues;
+    }
+
+    public List<Quest_Clues> GetClues()
+    {
+        return CurrentQuest.Clues;
     }
     public void AddQuest(Quest quest)
     {

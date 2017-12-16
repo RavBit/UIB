@@ -25,7 +25,7 @@ public class ClueManager : MonoBehaviour {
 
         canvas = GameObject.FindWithTag("ClueCanvas");
         canvas.SetActive(false);
-        Load();
+        //Load();
     }
     void LoadInClues()
     {

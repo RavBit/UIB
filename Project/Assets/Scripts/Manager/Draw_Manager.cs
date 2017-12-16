@@ -18,4 +18,8 @@ public class Draw_Manager : MonoBehaviour {
         OnlineMaps.instance.AddMarker(m);
         //OnlineMapsMarker.OnMarkerDrawTooltip.
     }
+    public void DrawClues()
+    {
+
+    }
 }

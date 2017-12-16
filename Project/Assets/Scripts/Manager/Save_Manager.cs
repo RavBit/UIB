@@ -10,10 +10,24 @@ public class Save_Manager : MonoBehaviour {
     public ClueDatabase ClueDB;
     public ClueDisplay Cluedisplay;
 
-    void Start()
+    public void Start()
     {
-        Load();
+        //Loading save and load Events in
+        Event_Manager.LoadQuestClues += Load;
+        Event_Manager.LoadQuestCluesF += LoadInClues;
+        Event_Manager.SaveQuestClues += Save;
+        Event_Manager.Get_LoadedClues += Get_LoadedClues;
+    }
+    public void LoadInClues()
+    {
+        ClueDB.clues = new List<Quest_Clues>();
+        ClueDB.clues = Event_Manager.Get_Clues();
+        XmlSerializer serializer = new XmlSerializer(typeof(ClueDatabase));
+        FileStream stream = new FileStream(Application.persistentDataPath + "/ClueData.xml", FileMode.Create);
+        serializer.Serialize(stream, ClueDB);
+        stream.Close();
         Cluedisplay.StartDislay();
+        Debug.Log("LOAD IN CLUES");
     }
     //save function
     public void Save()
@@ -21,7 +35,6 @@ public class Save_Manager : MonoBehaviour {
         //open xml file
         XmlSerializer serializer = new XmlSerializer(typeof(ClueDatabase));
         FileStream stream = new FileStream(Application.persistentDataPath + "/ClueData.xml", FileMode.Create);
-
         serializer.Serialize(stream, ClueDB);
         stream.Close();
     }
@@ -29,16 +42,21 @@ public class Save_Manager : MonoBehaviour {
     //load function
     public void Load()
     {
+        Debug.Log("Application data path" + Application.persistentDataPath);
         XmlSerializer serializer = new XmlSerializer(typeof(ClueDatabase));
         FileStream stream = new FileStream(Application.persistentDataPath + "/ClueData.xml", FileMode.Open);
         if (stream == null)
         {
-            Debug.Log("IS NULL");
             Save();
+            return;
         }
 
         ClueDB = serializer.Deserialize(stream) as ClueDatabase;
         stream.Close();
+    }
+    public List<Quest_Clues> Get_LoadedClues()
+    {
+        return ClueDB.clues;
     }
 
 }

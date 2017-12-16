@@ -30,5 +30,14 @@ public class Quest_Dialog : MonoBehaviour {
             //g.transform.SetParent(Suspect_Container.transform);
         }
     }
+
+    public void CloseAndSafeClues()
+    {
+        Debug.Log("Close and Save Clues");
+        Event_Manager.Save_QuestClues();
+        OnlineMaps.instance.RemoveAllMarkers();
+        Quest_Manager.Load_Quest();
+
+    }
 	
 }
