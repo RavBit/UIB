@@ -21,7 +21,7 @@ public class ClueScript : MonoBehaviour {
 
     void Start() {
         target = GameObject.FindWithTag("MainCamera").gameObject.transform;
-        texts = ClueManager.canvas.GetComponentsInChildren<Text>();
+        texts = ClueDisplay.canvas.GetComponentsInChildren<Text>();
         clueName = texts[0];
         description = texts[1];
     }
@@ -37,7 +37,7 @@ public class ClueScript : MonoBehaviour {
         clueData.found = 1;
         gameObject.SetActive(false);
         //activate ClueCanvas
-        ClueManager.canvas.SetActive(true);
+        ClueDisplay.canvas.SetActive(true);
 
         clueName.text = clueData.clue;
         description.text = clueData.description;

@@ -14,7 +14,6 @@ using System.IO;
 
 public class ClueManager : MonoBehaviour {
 
-    public static GameObject canvas;
     public ClueDatabase ClueDB;
     
     
@@ -22,10 +21,6 @@ public class ClueManager : MonoBehaviour {
     public static ClueManager ins;
     void Awake() {
         ins = this;
-
-        canvas = GameObject.FindWithTag("ClueCanvas");
-        canvas.SetActive(false);
-        Load();
     }
     void LoadInClues()
     {

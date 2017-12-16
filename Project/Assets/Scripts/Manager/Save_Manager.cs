@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Xml;
@@ -13,7 +13,7 @@ public class Save_Manager : MonoBehaviour {
     void Start()
     {
         Load();
-        Cluedisplay.StartDislay();
+        Cluedisplay.StartDisplay();
     }
     //save function
     public void Save()
