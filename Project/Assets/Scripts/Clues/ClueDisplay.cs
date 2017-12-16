@@ -7,8 +7,21 @@ public class ClueDisplay : MonoBehaviour {
 
     public ClueScript cluePrefab;
     public Save_Manager SM;
-    
-    public void StartDislay () {
+
+    private Text[] texts;
+    public Text clueName, description;
+    public static GameObject canvas;
+    void Awake() {
+        canvas = GameObject.FindWithTag("ClueCanvas");
+        texts = canvas.GetComponentsInChildren<Text>();
+        clueName = texts[0];
+        description = texts[1];
+        canvas.SetActive(false);
+
+
+    }
+
+    public void StartDisplay () {
         StartCoroutine("Display");
 	}
 	
@@ -28,5 +41,18 @@ public class ClueDisplay : MonoBehaviour {
             newClue.Display(clue);
         }
     }
-    
+
+    public void CheckClues() {
+        int foundClues = 0;
+        foreach (Quest_Clues clue in SM.ClueDB.clues) {
+            if (clue.found != 1) {
+                foundClues++;
+            }
+        }
+        if (foundClues == SM.ClueDB.clues.Capacity) {
+            canvas.SetActive(true);
+            clueName.text = "You've found all clues.";
+            description.text = "Go back to the quest overview.";
+        }
+    }
 }

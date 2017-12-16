@@ -112,12 +112,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &442674 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114123168196516386, guid: c303ac8f26cfb064eb21898bc82d54fc,
-    type: 2}
-  m_PrefabInternal: {fileID: 243924461}
-  m_Script: {fileID: 11500000, guid: 8b9f3bb778058af4fbf3c0e2f599128f, type: 3}
 --- !u!1 &26112652
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,7 +1003,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 442674}
+      - m_Target: {fileID: 134570845}
+        m_MethodName: CheckClues
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1760174013}
         m_MethodName: Save
         m_Mode: 1
         m_Arguments:
@@ -1093,6 +1098,10 @@ Prefab:
     - target: {fileID: 4350510437117468, guid: c303ac8f26cfb064eb21898bc82d54fc, type: 2}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1426234248432848, guid: c303ac8f26cfb064eb21898bc82d54fc, type: 2}
+      propertyPath: m_Name
+      value: ClueDisplay
       objectReference: {fileID: 0}
     - target: {fileID: 114757478425184850, guid: c303ac8f26cfb064eb21898bc82d54fc,
         type: 2}

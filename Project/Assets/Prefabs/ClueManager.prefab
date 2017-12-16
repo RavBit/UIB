@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4350510437117468}
-  - component: {fileID: 114123168196516386}
   - component: {fileID: 114757478425184850}
   m_Layer: 0
   m_Name: ClueManager
@@ -41,31 +40,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114123168196516386
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1426234248432848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9f3bb778058af4fbf3c0e2f599128f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ClueDB:
-    clues:
-    - clueName: Vingerafdruk
-      isFound: 0
-      description: Zou deze van de verdachte zijn?
-      isKeyClue: 1
-    - clueName: Clue 2
-      isFound: 0
-      description: Zou deze van de verdachte zijn?
-      isKeyClue: 0
-    - clueName: Clue 3
-      isFound: 0
-      description: Zou deze van de verdachte zijn?
-      isKeyClue: 0
 --- !u!114 &114757478425184850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -79,4 +53,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cluePrefab: {fileID: 114916202028456250, guid: 99519f3bd0bc813488708b43ae36b1e0,
     type: 2}
-  clueManager: {fileID: 114123168196516386}
+  SM: {fileID: 0}
