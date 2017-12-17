@@ -25,9 +25,9 @@ public class Quest {
                 marker.OnClick += OnMarkerClick;
         }
 
-        foreach(Suspect suspect in Suspects) {
+        //foreach(Suspect suspect in Suspects) {
             //Suspect_Item SI = new Suspect_Item(suspect.name, suspect.description, suspect.look, suspect.height);
-        }
+        //}
 
         // Add OnClick events to dynamic markers
         dynamicMarker = map.AddMarker(UnityEngine.Vector2.zero, null, "Dynamic marker");

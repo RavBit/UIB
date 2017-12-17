@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 public class Suspect_Item : MonoBehaviour {
     public string suspectName;
     public string description;
     public string look;
     public float height;
+    private GameObject suspectParent;
 
     public SpriteRenderer hairRenderer;
     public SpriteRenderer faceRenderer;
@@ -15,21 +17,35 @@ public class Suspect_Item : MonoBehaviour {
     private SpriteRenderer hairSR;
     private bool isCulprit;
     private char[] lookArray;
+    private Sprite body;
+    private Sprite hair;
 
 
     public Text Name;
-
-    //ADD CLOTHING GENERATOR AND SUCH
+    
     public Suspect_Item(string n, string d, string l, float h) {
         suspectName = n;
         description = d;
         look = l;
         height = h;
+    }
+
+    void OnEnable () {
+        suspectBody = gameObject;
+        suspectBody.name = suspectName;
+        bodySR = suspectBody.AddComponent<SpriteRenderer>();
+        suspectHair = new GameObject();
+        suspectHair.name = suspectName + " hair";
+        suspectHair.transform.SetParent(suspectBody.transform);
+        hairSR = suspectHair.AddComponent<SpriteRenderer>();
+        StartCoroutine("FillArray");
+
+
+    }
+
+    private IEnumerator FillArray() {
+        yield return new WaitForSeconds(1);
         lookArray = look.ToCharArray();
-
-
-        Sprite body;
-        Sprite hair;
 
         if (lookArray[0] == 'A' && lookArray[1] == 'A') {
             body = Resources.Load<Sprite>("Sprites/Body/Male");
@@ -46,13 +62,5 @@ public class Suspect_Item : MonoBehaviour {
             hair = Resources.Load<Sprite>("Sprites/Hair/Triangle");
         }
         hairSR.sprite = hair;
-
-        suspectBody = new GameObject();
-        suspectBody.name = name;
-        bodySR = suspectBody.AddComponent<SpriteRenderer>();
-        suspectHair = new GameObject();
-        suspectHair.name = name + " hair";
-        suspectHair.transform.SetParent(suspectBody.transform);
-        hairSR = suspectHair.AddComponent<SpriteRenderer>();
     }
 }

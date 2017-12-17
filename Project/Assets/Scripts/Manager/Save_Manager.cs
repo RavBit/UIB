@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Xml;
@@ -26,7 +26,7 @@ public class Save_Manager : MonoBehaviour {
         FileStream stream = new FileStream(Application.persistentDataPath + "/ClueData.xml", FileMode.Create);
         serializer.Serialize(stream, ClueDB);
         stream.Close();
-        Cluedisplay.StartDislay();
+        Cluedisplay.StartDisplay();
         Debug.Log("LOAD IN CLUES");
     }
     //save function

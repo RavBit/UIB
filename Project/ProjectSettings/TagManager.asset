@@ -6,6 +6,7 @@ TagManager:
   tags:
   - VuforiaCamera
   - ClueCanvas
+  - SuspectParent
   layers:
   - Default
   - TransparentFX

@@ -24,10 +24,15 @@ public class Quest_Dialog : MonoBehaviour {
     }
     public void InitSuspects(List<Suspect> _suspect) {
         foreach(Suspect sus in _suspect) {
-            Suspect S = new Suspect(sus.name, sus.description, sus.look, sus.height);
-            //GameObject g = Instantiate(Suspect_Item, Suspect_Container.transform.position, Quaternion.identity) as GameObject;
-            //g.GetComponent<Suspect_Item>().Name.text = sus.name;
-            //g.transform.SetParent(Suspect_Container.transform);
+            //Suspect S = new Suspect(sus.name, sus.description, sus.look, sus.height);
+            GameObject g = Instantiate(Suspect_Item, Suspect_Container.transform.position, Quaternion.identity) as GameObject;
+            Suspect_Item si = g.GetComponent<Suspect_Item>();
+            si.Name.text = sus.name;
+            si.suspectName = sus.name;
+            si.description = sus.description;
+            si.look = sus.look;
+            si.height = sus.height;
+            g.transform.SetParent(Suspect_Container.transform);
         }
     }
 

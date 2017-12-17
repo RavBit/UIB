@@ -8,6 +8,7 @@ public class Base_Suspect {
     public string description;
     public string look;
     public float height;
+    private GameObject suspectParent;
 
     public SpriteRenderer hairRenderer;
     public SpriteRenderer faceRenderer;
@@ -28,7 +29,8 @@ public class Base_Suspect {
 
 
         suspectBody = new GameObject();
-        suspectBody.transform.position = new Vector3(115, 720, 0);
+        suspectParent = GameObject.FindWithTag("SuspectParent");
+        suspectBody.transform.SetParent(suspectParent.transform);
         suspectBody.name = name;
         bodySR = suspectBody.AddComponent<SpriteRenderer>();
         suspectHair = new GameObject();

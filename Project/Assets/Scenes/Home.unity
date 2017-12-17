@@ -376,7 +376,6 @@ GameObject:
   - component: {fileID: 105934864}
   - component: {fileID: 105934863}
   - component: {fileID: 105934862}
-  - component: {fileID: 105934861}
   m_Layer: 0
   m_Name: ARCamera
   m_TagString: Untagged
@@ -398,18 +397,6 @@ Transform:
   m_Father: {fileID: 154031821}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &105934861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114511761056210460, guid: 50c4c866ffbf67e48b5630e0502ae961,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 105934859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &105934862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1108,6 +1095,16 @@ Prefab:
       propertyPath: SM
       value: 
       objectReference: {fileID: 1760174013}
+    - target: {fileID: 114757478425184850, guid: c303ac8f26cfb064eb21898bc82d54fc,
+        type: 2}
+      propertyPath: AR
+      value: 
+      objectReference: {fileID: 154031820}
+    - target: {fileID: 114757478425184850, guid: c303ac8f26cfb064eb21898bc82d54fc,
+        type: 2}
+      propertyPath: MAP
+      value: 
+      objectReference: {fileID: 491600751}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c303ac8f26cfb064eb21898bc82d54fc, type: 2}
   m_IsPrefabParent: 0
@@ -1988,6 +1985,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 134570845}
+        m_MethodName: CheckClues
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &735693889
@@ -2680,6 +2688,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   apiKey: AIzaSyAV1KcI9QIy_cIR_eEeoORS1mPgEV8Hyl4
+  tempcounter: 0
+  counter: 0
 --- !u!1 &1030179279
 GameObject:
   m_ObjectHideFlags: 0
@@ -3756,7 +3766,7 @@ GameObject:
   - component: {fileID: 1753941001}
   m_Layer: 5
   m_Name: Suspects
-  m_TagString: Untagged
+  m_TagString: SuspectParent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
