@@ -79,6 +79,7 @@ public class Web_Manager : MonoBehaviour
                 {
                     if (quest.id == CSQC.quest_id)
                     {
+                        Event_Manager.Draw_Quest(DRAW_OBJECTS.Quest);
                         Event_Manager.Load_QuestClues();
                         Event_Manager.Set_CurrentQuest(quest);
                         Event_Manager.Set_CurrentQuestClues(Event_Manager.Get_XML_Clues());

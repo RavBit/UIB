@@ -24,7 +24,6 @@ public class Quest_Dialog : MonoBehaviour {
     }
     public void InitSuspects(List<Suspect> _suspect) {
         foreach(Suspect sus in _suspect) {
-            //Suspect S = new Suspect(sus.name, sus.description, sus.look, sus.height);
             GameObject g = Instantiate(Suspect_Item, Suspect_Container.transform.position, Quaternion.identity) as GameObject;
             Suspect_Item si = g.GetComponent<Suspect_Item>();
             si.Name.text = sus.name;
@@ -43,6 +42,13 @@ public class Quest_Dialog : MonoBehaviour {
         OnlineMaps.instance.RemoveAllMarkers();
         Quest_Manager.Load_Quest();
 
+    }
+
+    public void DeclineQuest() {
+        GameObject[] sus = GameObject.FindGameObjectsWithTag("Suspect");
+        foreach(GameObject obj in sus) {
+            Destroy(obj);
+        }
     }
 	
 }

@@ -7,6 +7,7 @@ public class Suspect_Item : MonoBehaviour {
     public string look;
     public float height;
     private GameObject suspectParent;
+    private Accusion accusionScript;
 
     public SpriteRenderer hairRenderer;
     public SpriteRenderer faceRenderer;
@@ -32,19 +33,20 @@ public class Suspect_Item : MonoBehaviour {
 
     void OnEnable () {
         suspectBody = gameObject;
-        suspectBody.name = suspectName;
         bodySR = suspectBody.AddComponent<SpriteRenderer>();
         suspectHair = new GameObject();
-        suspectHair.name = suspectName + " hair";
         suspectHair.transform.SetParent(suspectBody.transform);
         hairSR = suspectHair.AddComponent<SpriteRenderer>();
         StartCoroutine("FillArray");
-
-
+        
     }
 
     private IEnumerator FillArray() {
         yield return new WaitForSeconds(1);
+
+        suspectBody.name = suspectName;
+        suspectHair.name = suspectName + " hair";
+
         lookArray = look.ToCharArray();
 
         if (lookArray[0] == 'A' && lookArray[1] == 'A') {
@@ -62,5 +64,11 @@ public class Suspect_Item : MonoBehaviour {
             hair = Resources.Load<Sprite>("Sprites/Hair/Triangle");
         }
         hairSR.sprite = hair;
+    }
+
+    public void SelectSuspect() {
+        //this should check if the accusion script is enabled in the scene
+        Accusion.SetSuspect(this);
+        //show a little border around it or something
     }
 }

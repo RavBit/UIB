@@ -9,8 +9,11 @@ public class ClueDisplay : MonoBehaviour {
     public Save_Manager SM;
     public GameObject MAP;
     public GameObject AR;
+    public GameObject popup;
+    public GameObject accuseUI;
 
-    int foundClues = 0;
+    private int foundClues = 0;
+    private int minimunClues = 0;
 
     private Text[] texts;
     public Text clueName, description;
@@ -62,6 +65,7 @@ public class ClueDisplay : MonoBehaviour {
             description.text = "Go back to the quest overview.";
             texts[2].text = "Back";
             btn.GetComponentInChildren<Button>().onClick.AddListener(OnClickAction);
+            foundClues = SM.ClueDB.clues.Capacity;
         }
     }
 
@@ -72,5 +76,13 @@ public class ClueDisplay : MonoBehaviour {
 
     void OnDisable() {
         btn.GetComponentInChildren<Button>().onClick.RemoveListener(OnClickAction);
+    }
+
+    public void Accuse() {
+        if (foundClues < minimunClues) {
+            popup.SetActive(true);
+        } else {
+            accuseUI.SetActive(true);
+        }
     }
 }
