@@ -54,6 +54,7 @@ public class Web_Manager : MonoBehaviour
                 _questdata[i].Suspects = JsonHelper.getJsonArray<Suspect>(suspectdata.text).ToList<Suspect>();
                 WWW cluesdata = new WWW("http://81.169.177.181/UIB/request_clues.php", quest_id);
                 yield return cluesdata;
+                Debug.Log("cluesdata " + cluesdata.text);
                 _questdata[i].Clues = JsonHelper.getJsonArray<Quest_Clues>(cluesdata.text).ToList<Quest_Clues>();
             }
         }
@@ -79,11 +80,15 @@ public class Web_Manager : MonoBehaviour
                 {
                     if (quest.id == CSQC.quest_id)
                     {
-                        Event_Manager.Draw_Quest(DRAW_OBJECTS.Quest);
                         Event_Manager.Load_QuestClues();
                         Event_Manager.Set_CurrentQuest(quest);
-                        Event_Manager.Set_CurrentQuestClues(Event_Manager.Get_XML_Clues());
-                        
+                        List<Quest_Clues> QC = new List<Quest_Clues>();
+                        QC = Event_Manager.Get_XML_Clues();
+                        if (QC.Count > 0) {
+                            Event_Manager.Set_CurrentQuestClues(QC);
+                            Debug.Log("COUNT " +  QC.Count);
+                          }
+
                     }
                 }
             }

@@ -10,6 +10,11 @@ public class Generate_Points : MonoBehaviour {
     public string apiKey;
     public int tempcounter = 0;
     public int counter = 0;
+    public Texture2D ClueMarker;
+
+    private void Start() {
+        Generate(3);
+    }
     public void Generate(int _counter) {
         double x = OnlineMapsLocationService.instance.GetLocationX();
         double y = OnlineMapsLocationService.instance.GetLocationY();
@@ -48,7 +53,10 @@ public class Generate_Points : MonoBehaviour {
                 tempcounter++;
                 Debug.Log("TEMPCOUNTER " + tempcounter + " AND COUNTER " + counter);
                 // Create a marker at the location of the result.
-                OnlineMapsMarker marker = OnlineMaps.instance.AddMarker(result.location, result.name);
+                OnlineMapsMarker marker = OnlineMaps.instance.AddMarker(result.location);
+                marker.texture = ClueMarker;
+                marker.scale = 2;
+                marker.Init();
                 markers.Add(marker);
             }
         }

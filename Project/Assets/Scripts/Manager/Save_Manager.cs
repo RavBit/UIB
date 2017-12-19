@@ -44,15 +44,26 @@ public class Save_Manager : MonoBehaviour {
     {
         Debug.Log("Application data path" + Application.persistentDataPath);
         XmlSerializer serializer = new XmlSerializer(typeof(ClueDatabase));
-        FileStream stream = new FileStream(Application.persistentDataPath + "/ClueData.xml", FileMode.Open);
-        if (stream == null)
+        FileStream stream = null;
+        try {
+            stream = new FileStream(Application.persistentDataPath + "/ClueData.xml", FileMode.Open);
+            ClueDB = serializer.Deserialize(stream) as ClueDatabase;
+        }
+        catch(System.Exception e) {
+            if(e is System.Xml.XmlException /*|| e is IOException*/) {
+                Debug.Log("NO DATA");
+                Save();
+            }
+
+        }
+        stream.Close();
+        /*if (stream == null)
         {
+            Debug.Log("SAVE");
             Save();
             return;
-        }
+        }*/
 
-        ClueDB = serializer.Deserialize(stream) as ClueDatabase;
-        stream.Close();
     }
     public List<Quest_Clues> Get_LoadedClues()
     {
