@@ -53,18 +53,21 @@ public class ClueDisplay : MonoBehaviour {
     }
 
     public void CheckClues() {
+        foundClues = 0;
         foreach (Quest_Clues clue in Event_Manager.Get_Clues()) {
             if (clue.found == 1) {
                 foundClues++;
             }
         }
-        if (foundClues >= Event_Manager.Get_Clues().Capacity) {
+        Debug.Log(foundClues);
+        Debug.Log(Event_Manager.Get_Clues().Count);
+        if (foundClues >= Event_Manager.Get_Clues().Count) {
             canvas.SetActive(true);
             clueName.text = "You've found all clues.";
             description.text = "Go back to the quest overview.";
             texts[2].text = "Back";
             btn.GetComponentInChildren<Button>().onClick.AddListener(OnClickAction);
-            foundClues = Event_Manager.Get_Clues().Capacity;
+            foundClues = Event_Manager.Get_Clues().Count;
         }
     }
 

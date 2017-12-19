@@ -7,11 +7,7 @@ public class Suspect_Item : MonoBehaviour {
     public string look;
     public float height;
     private GameObject suspectParent;
-    private Accusion accusionScript;
-
-    public SpriteRenderer hairRenderer;
-    public SpriteRenderer faceRenderer;
-    public SpriteRenderer clothesRenderer;
+    
     public GameObject suspectBody;
     public GameObject suspectHair;
     private SpriteRenderer bodySR;
@@ -33,17 +29,18 @@ public class Suspect_Item : MonoBehaviour {
 
     void OnEnable () {
         suspectBody = gameObject;
-        bodySR = suspectBody.AddComponent<SpriteRenderer>();
-        suspectHair = new GameObject();
-        suspectHair.transform.SetParent(suspectBody.transform);
-        hairSR = suspectHair.AddComponent<SpriteRenderer>();
         StartCoroutine("FillArray");
-        
     }
 
     private IEnumerator FillArray() {
         yield return new WaitForSeconds(1);
+        if (GameObject.Find(suspectName + " hair") == null) {
+            bodySR = suspectBody.AddComponent<SpriteRenderer>();
+            suspectHair = new GameObject();
+            suspectHair.transform.SetParent(suspectBody.transform);
+            hairSR = suspectHair.AddComponent<SpriteRenderer>();
 
+        }
         suspectBody.name = suspectName;
         suspectHair.name = suspectName + " hair";
 
