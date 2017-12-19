@@ -88,7 +88,7 @@ public class Web_Manager : MonoBehaviour
                             Event_Manager.Set_CurrentQuestClues(QC);
                             Debug.Log("COUNT " +  QC.Count);
                           }
-
+                        Event_Manager.Calculate_Clue();
                     }
                 }
             }

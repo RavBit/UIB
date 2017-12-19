@@ -3752,7 +3752,6 @@ GameObject:
   - component: {fileID: 1015617008}
   - component: {fileID: 1015617009}
   - component: {fileID: 1015617010}
-  - component: {fileID: 1015617011}
   m_Layer: 0
   m_Name: Quest_Manager
   m_TagString: Untagged
@@ -3810,21 +3809,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e61c456ab81f7147bbbf48b129cc6c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1015617011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1015617007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24fe90fba5d4b094db78f644a54a15b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  apiKey: AIzaSyAV1KcI9QIy_cIR_eEeoORS1mPgEV8Hyl4
-  tempcounter: 0
-  counter: 0
-  ClueMarker: {fileID: 2800000, guid: 1e64e3620fee9ae44b69eec30e0b2ffd, type: 3}
 --- !u!1 &1019719055
 GameObject:
   m_ObjectHideFlags: 0
@@ -4906,6 +4890,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1339642694}
+  - component: {fileID: 1339642696}
+  - component: {fileID: 1339642695}
   m_Layer: 0
   m_Name: Clue_Manager
   m_TagString: Untagged
@@ -4926,6 +4912,32 @@ Transform:
   m_Father: {fileID: 570023652}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1339642695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1339642693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24fe90fba5d4b094db78f644a54a15b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKey: AIzaSyAV1KcI9QIy_cIR_eEeoORS1mPgEV8Hyl4
+  tempcounter: 0
+  counter: 0
+  ClueMarker: {fileID: 2800000, guid: 1e64e3620fee9ae44b69eec30e0b2ffd, type: 3}
+--- !u!114 &1339642696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1339642693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f9b0b790f652c4498fd5d72e50dbd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1362726723
 GameObject:
   m_ObjectHideFlags: 0
@@ -5127,6 +5139,7 @@ MonoBehaviour:
   _questdata: []
   _temp: []
   wtest: []
+  CM: {fileID: 1339642696}
 --- !u!1 &1519655592
 GameObject:
   m_ObjectHideFlags: 0

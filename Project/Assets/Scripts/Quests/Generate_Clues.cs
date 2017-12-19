@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Generate_Points : MonoBehaviour {
+public class Generate_Clues : MonoBehaviour {
 
     /// <summary>
     /// Google API Key
@@ -10,15 +10,15 @@ public class Generate_Points : MonoBehaviour {
     public string apiKey;
     public int tempcounter = 0;
     public int counter = 0;
+    public string _name = "";
     public Texture2D ClueMarker;
-
     private void Start() {
-        Generate(3);
+        Event_Manager.GenerateClues += Generate_Clue;
     }
-    public void Generate(int _counter) {
+    public void Generate_Clue(int _amount) {
         double x = OnlineMapsLocationService.instance.GetLocationX();
         double y = OnlineMapsLocationService.instance.GetLocationY();
-        counter = _counter;
+        counter = _amount;
         // Makes a request to Google Places API.
         OnlineMapsGooglePlaces.FindNearby(
             apiKey,

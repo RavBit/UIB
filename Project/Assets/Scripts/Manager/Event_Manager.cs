@@ -49,6 +49,12 @@ public class Event_Manager : MonoBehaviour {
     public static event SaveAndLoad LoadQuestClues;
     public static event SaveAndLoad LoadQuestCluesF;
     public static event SaveAndLoad SaveQuestClues;
+
+    //Operate ClueManager
+    public delegate void CallClue();
+    public static event CallClue CalculateClue;
+    public delegate void GenerateClue(int _amount);
+    public static event GenerateClue GenerateClues;
     //Loads in Objects in the scene and deletes other markers or data
     public static void Load_Objects(LOAD_OBJECTS lo) {
         switch (lo) {
@@ -87,6 +93,9 @@ public class Event_Manager : MonoBehaviour {
     public static void Add_QuestCircles(Quest quest) {
         AddQuestCircles(quest);
     }
+    public static void Calculate_Clue() {
+        CalculateClue();
+    }
     public static void Distance_Check() {
         DistanceCheck();
     }
@@ -105,7 +114,9 @@ public class Event_Manager : MonoBehaviour {
     {
         SetCurrentQuestClues(QC);
     }
-
+    public static void Generate_Clues(int _amount) {
+        GenerateClues(_amount);
+    }
     public static List<Quest_Clues> Get_XML_Clues()
     {
         return Get_LoadedClues();
