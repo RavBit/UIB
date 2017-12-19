@@ -74,10 +74,6 @@ public class ClueDisplay : MonoBehaviour {
         MAP.SetActive(true);
     }
 
-    void OnDisable() {
-        btn.GetComponentInChildren<Button>().onClick.RemoveListener(OnClickAction);
-    }
-
     public void Accuse() {
         if (foundClues < minimunClues) {
             popup.SetActive(true);
