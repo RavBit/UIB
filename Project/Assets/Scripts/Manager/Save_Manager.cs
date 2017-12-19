@@ -48,6 +48,7 @@ public class Save_Manager : MonoBehaviour {
         try {
             stream = new FileStream(Application.persistentDataPath + "/ClueData.xml", FileMode.Open);
             ClueDB = serializer.Deserialize(stream) as ClueDatabase;
+            stream.Close();
         }
         catch(System.Exception e) {
             if(e is System.Xml.XmlException /*|| e is IOException*/) {
@@ -56,7 +57,6 @@ public class Save_Manager : MonoBehaviour {
             }
 
         }
-        stream.Close();
         /*if (stream == null)
         {
             Debug.Log("SAVE");
