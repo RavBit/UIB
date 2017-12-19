@@ -6,14 +6,13 @@ using UnityEngine.UI;
 public class ClueDisplay : MonoBehaviour {
 
     public ClueScript cluePrefab;
-    public Save_Manager SM;
     public GameObject MAP;
     public GameObject AR;
     public GameObject popup;
     public GameObject accuseUI;
 
     private int foundClues = 0;
-    private int minimunClues = 0;
+    private int minimunClues = 2;
 
     private Text[] texts;
     public Text clueName, description;
@@ -39,7 +38,7 @@ public class ClueDisplay : MonoBehaviour {
 
         yield return new WaitForSeconds(1);
 
-        foreach (Quest_Clues clue in SM.ClueDB.clues) {
+        foreach (Quest_Clues clue in Event_Manager.Get_Clues()) {
             ClueScript newClue = Instantiate(cluePrefab) as ClueScript;
             if (clue.found == 1) {
                 newClue.gameObject.SetActive(false);
@@ -54,18 +53,18 @@ public class ClueDisplay : MonoBehaviour {
     }
 
     public void CheckClues() {
-        foreach (Quest_Clues clue in SM.ClueDB.clues) {
+        foreach (Quest_Clues clue in Event_Manager.Get_Clues()) {
             if (clue.found == 1) {
                 foundClues++;
             }
         }
-        if (foundClues >= SM.ClueDB.clues.Capacity) {
+        if (foundClues >= Event_Manager.Get_Clues().Capacity) {
             canvas.SetActive(true);
             clueName.text = "You've found all clues.";
             description.text = "Go back to the quest overview.";
             texts[2].text = "Back";
             btn.GetComponentInChildren<Button>().onClick.AddListener(OnClickAction);
-            foundClues = SM.ClueDB.clues.Capacity;
+            foundClues = Event_Manager.Get_Clues().Capacity;
         }
     }
 
