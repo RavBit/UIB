@@ -42,7 +42,6 @@ public class Save_Manager : MonoBehaviour {
     //load function
     public void Load()
     {
-        Debug.Log("Application data path" + Application.persistentDataPath);
         XmlSerializer serializer = new XmlSerializer(typeof(ClueDatabase));
         FileStream stream = null;
         try {

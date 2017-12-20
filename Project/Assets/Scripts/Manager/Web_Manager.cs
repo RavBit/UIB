@@ -73,7 +73,6 @@ public class Web_Manager : MonoBehaviour
         if (string.IsNullOrEmpty(qd.error))
         {
             CurStartQuestChecker CSQC = JsonUtility.FromJson<CurStartQuestChecker>(qd.text);
-            Debug.Log("CQC : " + CSQC.success);
             if (CSQC.success)
             {
                 foreach (Quest quest in _questdata)

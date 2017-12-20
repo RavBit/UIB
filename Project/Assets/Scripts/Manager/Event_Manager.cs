@@ -53,7 +53,7 @@ public class Event_Manager : MonoBehaviour {
     //Operate ClueManager
     public delegate void CallClue();
     public static event CallClue CalculateClue;
-    public delegate void GenerateClue(int _amount);
+    public delegate void GenerateClue(List<Clue_Map> _amount);
     public static event GenerateClue GenerateClues;
     //Loads in Objects in the scene and deletes other markers or data
     public static void Load_Objects(LOAD_OBJECTS lo) {
@@ -114,7 +114,7 @@ public class Event_Manager : MonoBehaviour {
     {
         SetCurrentQuestClues(QC);
     }
-    public static void Generate_Clues(int _amount) {
+    public static void Generate_Clues(List<Clue_Map> _amount) {
         GenerateClues(_amount);
     }
     public static List<Quest_Clues> Get_XML_Clues()

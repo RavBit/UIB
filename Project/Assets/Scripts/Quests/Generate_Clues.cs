@@ -12,13 +12,16 @@ public class Generate_Clues : MonoBehaviour {
     public int counter = 0;
     public string _name = "";
     public Texture2D ClueMarker;
+    public List<Clue_Map> CM;
     private void Start() {
         Event_Manager.GenerateClues += Generate_Clue;
     }
-    public void Generate_Clue(int _amount) {
+    public void Generate_Clue(List<Clue_Map> ClueMap) {
         double x = OnlineMapsLocationService.instance.GetLocationX();
         double y = OnlineMapsLocationService.instance.GetLocationY();
-        counter = _amount;
+        counter = ClueMap.Count;
+        CM = new List<Clue_Map>();
+        CM = ClueMap;
         // Makes a request to Google Places API.
         OnlineMapsGooglePlaces.FindNearby(
             apiKey,
@@ -54,10 +57,12 @@ public class Generate_Clues : MonoBehaviour {
                 Debug.Log("TEMPCOUNTER " + tempcounter + " AND COUNTER " + counter);
                 // Create a marker at the location of the result.
                 OnlineMapsMarker marker = OnlineMaps.instance.AddMarker(result.location);
+                marker.label = "C" + (tempcounter -1);
                 marker.texture = ClueMarker;
                 marker.scale = 2;
                 marker.Init();
                 markers.Add(marker);
+                CM[tempcounter - 1].AddInteraction(tempcounter - 1);
             }
         }
     }
