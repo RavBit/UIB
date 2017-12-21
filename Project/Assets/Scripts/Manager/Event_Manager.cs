@@ -35,6 +35,8 @@ public class Event_Manager : MonoBehaviour {
     //Set current quest
     public delegate void CurrentQuestSet(Quest _q);
     public static event CurrentQuestSet SetCurrentQuest;
+    public delegate void CurrentQuestClueSet(Quest_Clues _q);
+    public static event CurrentQuestClueSet SetClueFound;
 
 
     //Set Quest clues
@@ -92,6 +94,9 @@ public class Event_Manager : MonoBehaviour {
     }
     public static void Add_QuestCircles(Quest quest) {
         AddQuestCircles(quest);
+    }
+    public static void Set_ClueFound(Quest_Clues _quest) {
+        SetClueFound(_quest);
     }
     public static void Calculate_Clue() {
         CalculateClue();

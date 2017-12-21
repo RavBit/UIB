@@ -17,8 +17,10 @@ public class Generate_Clues : MonoBehaviour {
         Event_Manager.GenerateClues += Generate_Clue;
     }
     public void Generate_Clue(List<Clue_Map> ClueMap) {
+        OnlineMaps.instance.Redraw();
         double x = OnlineMapsLocationService.instance.GetLocationX();
         double y = OnlineMapsLocationService.instance.GetLocationY();
+        OnlineMaps.instance.Redraw();
         counter = ClueMap.Count;
         CM = new List<Clue_Map>();
         CM = ClueMap;
@@ -30,7 +32,7 @@ public class Generate_Clues : MonoBehaviour {
                 y, // Latitude
                 500) // Radius
             {
-                types = "restaurant"
+                types = "school"
             }).OnComplete += OnComplete;
     }
 

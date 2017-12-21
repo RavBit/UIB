@@ -139,17 +139,17 @@ public class OnlineMapsLocationService : OnlineMapsLocationServiceGenericBase<On
     public float GetLocationX() {
         LocationInfo data = Input.location.lastData;
 //#if UNITY_EDITOR
-        return emulatorPosition.x;
+        //return emulatorPosition.x;
 //#endif
-        //return data.longitude;
+        return data.longitude;
     }
 
     public float GetLocationY() {
         LocationInfo data = Input.location.lastData;
 //#if UNITY_EDITOR
-        return emulatorPosition.y;
+        //return emulatorPosition.y;
 //#endif
-        //return data.latitude;
+        return data.latitude;
     }
 
     public override void StopLocationService()

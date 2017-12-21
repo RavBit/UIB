@@ -33,8 +33,8 @@ public class ClueDisplay : MonoBehaviour {
     }
 
     public void StartDisplay () {
-        clues = Event_Manager.Get_Clues();
-        StartCoroutine("Display");
+        //clues = Event_Manager.Get_Clues();
+        //StartCoroutine("Display");
 	}
 	
 	public IEnumerator Display() {
@@ -63,8 +63,9 @@ public class ClueDisplay : MonoBehaviour {
         foreach (Quest_Clues clue in clues) {
             if (clue.found == 1) {
                 foundClues++;
+                Event_Manager.Set_ClueFound(clue);
             }
-        }
+        }/*
         if (foundClues >= clues.Count) {
             canvas.SetActive(true);
             clueName.text = "You've found all clues.";
@@ -72,13 +73,14 @@ public class ClueDisplay : MonoBehaviour {
             texts[2].text = "Back";
             btn.GetComponentInChildren<Button>().onClick.AddListener(StopAR);
             foundClues = clues.Count;
-        }
+        }*/
     }
 
-    void StopAR() {
+    public void StopAR() {
         AR.SetActive(false);
         MAP.SetActive(true);
         Quest_Manager.Load_Quest();
+        Debug.Log("TEST");
     }
 
     public void Accuse() {

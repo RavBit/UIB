@@ -39,7 +39,6 @@ public class Quest_Dialog : MonoBehaviour {
     {
         Debug.Log("Close and Save Clues");
         Event_Manager.Save_QuestClues();
-        OnlineMaps.instance.RemoveAllMarkers();
         Quest_Manager.Load_Quest();
 
     }

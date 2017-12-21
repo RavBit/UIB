@@ -13,14 +13,12 @@ public class Quest_Manager : MonoBehaviour {
     public Texture2D GreenMarker;
 
     public GameObject DialogScreen;
-    void Start()
-    {
+    void Start() {
         Setup();
         Load_Quest();
 
     }
-    void Setup()
-    {
+    void Setup() {
         //Pool to setup the events in
         Event_Manager.AddQuest += AddQuest;
         Event_Manager.DrawQuests += DrawQuests;
@@ -30,12 +28,13 @@ public class Quest_Manager : MonoBehaviour {
         Event_Manager.SetCurrentQuest += SetCurrentQuest;
         Event_Manager.GetClues += GetClues;
         Event_Manager.SetCurrentQuestClues += SetCurrentQuestClues;
+        Event_Manager.SetClueFound += Set_ClueFound;
     }
     void CheckDistanceQuest() {
-        foreach(Quest quest in Quests) {
+        foreach (Quest quest in Quests) {
             double dis = OnlineMapsUtils.DistanceBetweenPointsD(new Vector2(quest.start_y, quest.start_x), new Vector2(OnlineMapsLocationService.instance.GetLocationX(), OnlineMapsLocationService.instance.GetLocationY()));
-            if(dis < 0.05f) {
-                foreach(OnlineMapsMarker marker in OnlineMaps.instance.markers) {
+            if (dis < 0.05f) {
+                foreach (OnlineMapsMarker marker in OnlineMaps.instance.markers) {
                     if (marker.label == quest.name) {
                         if (!quest.ClickAble) {
                             marker.texture = RedMarker;
@@ -48,23 +47,19 @@ public class Quest_Manager : MonoBehaviour {
             }
         }
     }
-    public static void Load_Quest()
-    {
+    public static void Load_Quest() {
         Web_Manager.instance.StopCoroutine("LoadQuests");
         Web_Manager.instance.StartCoroutine("LoadQuests");
     }
 
-    void SetCurrentQuestClues(List<Quest_Clues> clues)
-    {
+    void SetCurrentQuestClues(List<Quest_Clues> clues) {
         CurrentQuest.Clues = clues;
     }
 
-    public List<Quest_Clues> GetClues()
-    {
+    public List<Quest_Clues> GetClues() {
         return CurrentQuest.Clues;
     }
-    public void AddQuest(Quest quest)
-    {
+    public void AddQuest(Quest quest) {
         Debug.Log("adding: " + quest.name);
         Quests.Add(quest);
     }
@@ -72,6 +67,15 @@ public class Quest_Manager : MonoBehaviour {
         Debug.Log("Set quest list " + ql.Count);
         Quests = new List<Quest>();
         Quests = ql;
+    }
+
+    public void Set_ClueFound(Quest_Clues clue) {
+        for (int i = 0; i < CurrentQuest.Clues.Count; i++) {
+            if(clue.ID == CurrentQuest.Clues[i].ID) {
+                Debug.Log("SEND ONE CLUE TO FOUND: " + clue.ID);
+                CurrentQuest.Clues[i] = clue;
+            }
+        }
     }
 
     public void SetCurrentQuest(Quest _quest)

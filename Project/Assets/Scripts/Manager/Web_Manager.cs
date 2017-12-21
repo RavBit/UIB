@@ -25,7 +25,6 @@ public class Web_Manager : MonoBehaviour
     public IEnumerator LoadQuests()
     {
         _questdata.Clear();
-        Debug.Log("RELOADING QUESTS");
         //Command gescheiden bestand CSV
         // ! https://www.mysql.com/products/workbench/
         WWW questdata = new WWW("http://81.169.177.181/UIB/request_quests.php");
@@ -87,6 +86,7 @@ public class Web_Manager : MonoBehaviour
                             Event_Manager.Set_CurrentQuestClues(QC);
                             Debug.Log("COUNT " +  QC.Count);
                           }
+                        Debug.Log("CALCULATING CLUE");
                         Event_Manager.Calculate_Clue();
                     }
                 }
@@ -119,6 +119,7 @@ public class Web_Manager : MonoBehaviour
                 Event_Manager.Load_QuestCluesF();
             }
         }
+        Quest_Manager.Load_Quest();
     }
 }
 
