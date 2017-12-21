@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,5 +32,7 @@ public class Clue_Map {
     private void OnMarkerClick(OnlineMapsMarkerBase marker)
     {
         Debug.Log("CLICKABLE");
+        ClueDisplay.instance.LoadClues(clues);
+        ClueDisplay.instance.StartAR();
     }
 }

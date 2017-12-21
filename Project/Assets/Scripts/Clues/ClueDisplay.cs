@@ -11,14 +11,19 @@ public class ClueDisplay : MonoBehaviour {
     public GameObject popup;
     public GameObject accuseUI;
 
+    public static ClueDisplay instance;
+
     private int foundClues = 0;
     private int minimunClues = 2;
+    private List<Quest_Clues> clues;
 
     private Text[] texts;
     public Text clueName, description;
     private Button btn;
     public static GameObject canvas;
     void Awake() {
+        instance = this;
+
         canvas = GameObject.FindWithTag("ClueCanvas");
         texts = canvas.GetComponentsInChildren<Text>();
         btn = canvas.GetComponentInChildren<Button>();
@@ -28,6 +33,7 @@ public class ClueDisplay : MonoBehaviour {
     }
 
     public void StartDisplay () {
+        clues = Event_Manager.Get_Clues();
         StartCoroutine("Display");
 	}
 	
@@ -38,7 +44,7 @@ public class ClueDisplay : MonoBehaviour {
 
         yield return new WaitForSeconds(1);
 
-        foreach (Quest_Clues clue in Event_Manager.Get_Clues()) {
+        foreach (Quest_Clues clue in clues) {
             ClueScript newClue = Instantiate(cluePrefab) as ClueScript;
             if (clue.found == 1) {
                 newClue.gameObject.SetActive(false);
@@ -54,26 +60,25 @@ public class ClueDisplay : MonoBehaviour {
 
     public void CheckClues() {
         foundClues = 0;
-        foreach (Quest_Clues clue in Event_Manager.Get_Clues()) {
+        foreach (Quest_Clues clue in clues) {
             if (clue.found == 1) {
                 foundClues++;
             }
         }
-        Debug.Log(foundClues);
-        Debug.Log(Event_Manager.Get_Clues().Count);
-        if (foundClues >= Event_Manager.Get_Clues().Count) {
+        if (foundClues >= clues.Count) {
             canvas.SetActive(true);
             clueName.text = "You've found all clues.";
             description.text = "Go back to the quest overview.";
             texts[2].text = "Back";
-            btn.GetComponentInChildren<Button>().onClick.AddListener(OnClickAction);
-            foundClues = Event_Manager.Get_Clues().Count;
+            btn.GetComponentInChildren<Button>().onClick.AddListener(StopAR);
+            foundClues = clues.Count;
         }
     }
 
-    void OnClickAction() {
+    void StopAR() {
         AR.SetActive(false);
         MAP.SetActive(true);
+        Quest_Manager.Load_Quest();
     }
 
     public void Accuse() {
@@ -82,5 +87,15 @@ public class ClueDisplay : MonoBehaviour {
         } else {
             accuseUI.SetActive(true);
         }
+    }
+
+    public void LoadClues(List<Quest_Clues> newClues) {
+        clues = newClues;
+        StartCoroutine("Display");
+    }
+
+    public void StartAR() {
+        AR.SetActive(true);
+        MAP.SetActive(false);
     }
 }
