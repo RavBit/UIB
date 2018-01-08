@@ -121,6 +121,30 @@ public class Web_Manager : MonoBehaviour
         }
         Quest_Manager.Load_Quest();
     }
+    public void Cancel_Quest(Quest CurrentQuest)
+    {
+        StartCoroutine("CancelQuest");
+    }
+    public IEnumerator CancelQuest()
+    {
+        WWWForm quest_id = new WWWForm();
+        quest_id.AddField("quest_id", 1);
+        WWW questdata = new WWW("http://81.169.177.181/UIB/cancel_quest.php", quest_id);
+        yield return questdata;
+        Debug.Log(questdata.text);
+        if (string.IsNullOrEmpty(questdata.error))
+        {
+            CurQuestChecker CQC = JsonUtility.FromJson<CurQuestChecker>(questdata.text);
+            Debug.Log("CANCELATION : " + CQC.success);
+            if (CQC.success)
+            {
+                Debug.Log("Succesfull Canceled");
+                StopCoroutine("LoadQuests");
+                StartCoroutine("LoadQuests");
+            }
+        }
+        Debug.LogError("NO QUEST RUNNING");
+    }
 }
 
 public class CurQuestChecker

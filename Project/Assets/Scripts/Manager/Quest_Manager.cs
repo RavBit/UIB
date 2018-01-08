@@ -100,4 +100,10 @@ public class Quest_Manager : MonoBehaviour {
             }
         }
     }
+    public void CancelQuest()
+    {
+        CurrentQuest = null;
+        Web_Manager.instance.Cancel_Quest(CurrentQuest);
+        Load_Quest();
+    }
 }

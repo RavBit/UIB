@@ -7,6 +7,7 @@ public class Generate_Clues : MonoBehaviour {
     /// <summary>
     /// Google API Key
     /// </summary>
+    public Position_Manager PM;
     public string apiKey;
     public int tempcounter = 0;
     public int counter = 0;
@@ -15,6 +16,7 @@ public class Generate_Clues : MonoBehaviour {
     public List<Clue_Map> CM;
     private void Start() {
         Event_Manager.GenerateClues += Generate_Clue;
+        PM = GetComponent<Position_Manager>();
     }
     public void Generate_Clue(List<Clue_Map> ClueMap) {
         OnlineMaps.instance.Redraw();
@@ -58,7 +60,7 @@ public class Generate_Clues : MonoBehaviour {
                 tempcounter++;
                 Debug.Log("TEMPCOUNTER " + tempcounter + " AND COUNTER " + counter);
                 // Create a marker at the location of the result.
-                OnlineMapsMarker marker = OnlineMaps.instance.AddMarker(result.location);
+                OnlineMapsMarker marker = OnlineMaps.instance.AddMarker(PM.FQ_Clues[tempcounter - 1].pos_y, PM.FQ_Clues[tempcounter - 1].pos_x, "??");
                 marker.label = "C" + (tempcounter -1);
                 marker.texture = ClueMarker;
                 marker.scale = 2;
