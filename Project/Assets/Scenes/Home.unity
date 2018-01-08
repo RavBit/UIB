@@ -5593,7 +5593,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36fae220e9424b144b16f13ee1e606ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FQ_Clues: []
+  FQ_Clues:
+  - pos_x: 0
+    pos_y: 0
+  - pos_x: 0
+    pos_y: 0
+  - pos_x: 0
+    pos_y: 0
+  - pos_x: 0
+    pos_y: 0
+  - pos_x: 0
+    pos_y: 0
   FQ_Dialogs: []
 --- !u!1 &1362726723
 GameObject:
@@ -6393,7 +6403,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1666418223
 RectTransform:
   m_ObjectHideFlags: 0
