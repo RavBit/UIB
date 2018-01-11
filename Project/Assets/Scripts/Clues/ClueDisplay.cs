@@ -17,6 +17,8 @@ public class ClueDisplay : MonoBehaviour {
     private int minimunClues = 2;
     private List<Quest_Clues> clues;
 
+    private bool seenTutorial = false;
+
     private Text[] texts;
     public Text clueName, description;
     private Button btn;
@@ -29,7 +31,9 @@ public class ClueDisplay : MonoBehaviour {
         btn = canvas.GetComponentInChildren<Button>();
         clueName = texts[0];
         description = texts[1];
-        canvas.SetActive(false);
+        if (seenTutorial) {
+            canvas.SetActive(false);
+        }
     }
 
     public void StartDisplay () {
@@ -51,8 +55,8 @@ public class ClueDisplay : MonoBehaviour {
             }
             newClue.transform.SetParent(transform, false);
             float rand1 = Random.Range(-50, 50);
-            float rand2 = Random.Range(-50, 50);
-            float rand3 = Random.Range(-50, 50);
+            float rand2 = Random.Range(-20, 20);
+            float rand3 = Random.Range(20, 50);
             newClue.transform.position = transform.position + new Vector3(rand1, rand2, rand3);
             newClue.Display(clue);
         }
@@ -99,5 +103,9 @@ public class ClueDisplay : MonoBehaviour {
     public void StartAR() {
         AR.SetActive(true);
         MAP.SetActive(false);
+    }
+
+    public void CloseTutorial() {
+        seenTutorial = true;
     }
 }

@@ -9,13 +9,13 @@ public class Suspect_Item : MonoBehaviour {
     private GameObject suspectParent;
     
     public GameObject suspectBody;
-    public GameObject suspectHair;
+    //public GameObject suspectHair;
     private SpriteRenderer bodySR;
-    private SpriteRenderer hairSR;
+    //private SpriteRenderer hairSR;
     private bool isCulprit;
     private char[] lookArray;
     private Sprite body;
-    private Sprite hair;
+    //private Sprite hair;
 
 
     public Text Name;
@@ -34,12 +34,16 @@ public class Suspect_Item : MonoBehaviour {
 
     private IEnumerator FillArray() {
         yield return new WaitForSeconds(1);
+
+        //Write something here that gets the single sprite based on the Look code
+
+        //This was scripted in case the suspects would be made out of different parts
+        /*
         if (GameObject.Find(suspectName + " hair") == null) {
             bodySR = suspectBody.AddComponent<SpriteRenderer>();
             suspectHair = new GameObject();
             suspectHair.transform.SetParent(suspectBody.transform);
             hairSR = suspectHair.AddComponent<SpriteRenderer>();
-
         }
         suspectBody.name = suspectName;
         suspectHair.name = suspectName + " hair";
@@ -60,7 +64,8 @@ public class Suspect_Item : MonoBehaviour {
         else {
             hair = Resources.Load<Sprite>("Sprites/Hair/Triangle");
         }
-        hairSR.sprite = hair;
+        hairSR.sprite = hair;*/
+        
     }
 
     public void SelectSuspect() {

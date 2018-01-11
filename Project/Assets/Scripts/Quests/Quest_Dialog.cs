@@ -8,6 +8,9 @@ public class Quest_Dialog : MonoBehaviour {
     public GameObject Suspect_Item;
     public GameObject Suspect_Container;
     public Quest CurQuest;
+
+    private Vector3 suspectOffset = new Vector3(-200, 0, 0);
+
     private void Awake() {
         Event_Manager.DialogLoad += SetDialog;
     }
@@ -24,7 +27,7 @@ public class Quest_Dialog : MonoBehaviour {
     }
     public void InitSuspects(List<Suspect> _suspect) {
         foreach(Suspect sus in _suspect) {
-            GameObject g = Instantiate(Suspect_Item, Suspect_Container.transform.position, Quaternion.identity) as GameObject;
+            GameObject g = Instantiate(Suspect_Item, Suspect_Container.transform.position + suspectOffset, Quaternion.identity) as GameObject;
             Suspect_Item si = g.GetComponent<Suspect_Item>();
             si.Name.text = sus.name;
             si.suspectName = sus.name;
@@ -32,7 +35,9 @@ public class Quest_Dialog : MonoBehaviour {
             si.look = sus.look;
             si.height = sus.height;
             g.transform.SetParent(Suspect_Container.transform);
+            suspectOffset += new Vector3(200, 0, 0);
         }
+        suspectOffset = new Vector3(-200, 0, 0);
     }
 
     public void CloseAndSafeClues()
