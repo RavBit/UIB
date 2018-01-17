@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Draw_Manager : MonoBehaviour {
     public OnlineMapsMarker QuestMarker;
+    public Texture2D RedMarker;
     private void Start() {
         Setup();
     }
@@ -19,10 +20,9 @@ public class Draw_Manager : MonoBehaviour {
         m.SetPosition(quest.start_y, quest.start_x);
         m.label = quest.name;
         m.scale = 2;
+        m.texture = RedMarker;
+        Debug.Log("DRAW");
         OnlineMaps.instance.AddMarker(m);
-        if(quest.name == "HKU") {
-            QuestMarker = m;
-        }
         //OnlineMapsMarker.OnMarkerDrawTooltip.
     }
     public void DrawClues()

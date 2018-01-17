@@ -8,6 +8,7 @@ public class Clue_Map {
     public Position pos;
     public bool ClickAble;
     private OnlineMapsMarker dynamicMarker;
+    public OnlineMapsMarker OMM;
 
     public void AddInteraction(int id)
     {
@@ -16,8 +17,10 @@ public class Clue_Map {
         // Add OnClick events to static markers
         foreach (OnlineMapsMarker marker in map.markers)
         {
-            if (marker.label == "C" + id)
+            if (marker.label == "C" + id) {
                 marker.OnClick += OnMarkerClick;
+                OMM = marker;
+            }
         }
 
         //foreach(Suspect suspect in Suspects) {
@@ -33,7 +36,7 @@ public class Clue_Map {
     private void OnMarkerClick(OnlineMapsMarkerBase marker)
     {
         if (ClickAble) {
-            ClueDisplay.instance.LoadClues(clues);
+            ClueDisplay.instance.LoadClues(clues, this);
             ClueDisplay.instance.StartAR();
         }
     }

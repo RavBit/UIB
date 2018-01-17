@@ -28,6 +28,7 @@ public class ClueScript : MonoBehaviour {
         clueName = texts[0];
         description = texts[1];
         clueModel = ClueDisplay.canvas.GetComponentInChildren<ClueModel>();
+        Debug.Log("Cluemodel " + clueModel.name);
     }
 
     void Update() {
@@ -44,7 +45,7 @@ public class ClueScript : MonoBehaviour {
                 Clues.found = 1;
             }
         }
-        //clueData.found = 1;
+        clueData.found = 1;
         gameObject.SetActive(false);
         //activate ClueCanvas
         ClueDisplay.canvas.SetActive(true);

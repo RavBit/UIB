@@ -12,13 +12,16 @@ public class Quest_Manager : MonoBehaviour {
     [Header("UI Objects")]
     public Texture2D RedMarker;
     public Texture2D GreenMarker;
-
+    public OnlineMapsMarker OMM;
     public ClueManager CM;
     public GameObject DialogScreen;
     void Start() {
         Setup();
         Load_Quest();
 
+    }
+    public OnlineMapsMarker GetOMM() {
+        return OMM;
     }
     void Setup() {
         //Pool to setup the events in
@@ -44,6 +47,9 @@ public class Quest_Manager : MonoBehaviour {
                             marker.Init();
                             OnlineMaps.instance.Redraw();
                             quest.AddInteraction();
+                            if (quest.id == 1) {
+                                OMM = marker;
+                            }
                         }
                     }
                 }
@@ -72,6 +78,7 @@ public class Quest_Manager : MonoBehaviour {
                 cm.ClickAble = false;
                 OnlineMaps.instance.Redraw();
             }
+            
         }
     }
     public static void Load_Quest() {

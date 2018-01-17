@@ -19,6 +19,8 @@ public class Generate_Clues : MonoBehaviour {
         PM = GetComponent<Position_Manager>();
     }
     public void Generate_Clue(List<Clue_Map> ClueMap) {
+        if (OnlineMaps.instance == null)
+            return;
         OnlineMaps.instance.Redraw();
         double x = OnlineMapsLocationService.instance.GetLocationX();
         double y = OnlineMapsLocationService.instance.GetLocationY();

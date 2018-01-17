@@ -10,7 +10,7 @@ public class ClueDisplay : MonoBehaviour {
     public GameObject AR;
     public GameObject popup;
     public GameObject accuseUI;
-
+    public Clue_Map CM;
     public static ClueDisplay instance;
 
     private int foundClues = 0;
@@ -82,6 +82,15 @@ public class ClueDisplay : MonoBehaviour {
     }
 
     public void StopAR() {
+        int counter = 0;
+        foreach (Quest_Clues clue in CM.clues) {
+            if (clue.found == 1) {
+                counter++;
+            }
+        }
+        if(counter >= 2) {
+            OnlineMaps.instance.RemoveMarker(CM.OMM);
+        }
         AR.SetActive(false);
         MAP.SetActive(true);
         Quest_Manager.Load_Quest();
@@ -96,7 +105,8 @@ public class ClueDisplay : MonoBehaviour {
         }
     }
 
-    public void LoadClues(List<Quest_Clues> newClues, Clue_Map cm) {
+    public void LoadClues(List<Quest_Clues> newClues, Clue_Map _CM) {
+        CM = _CM;
         clues = newClues;
         StartCoroutine("Display");
     }
