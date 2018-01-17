@@ -6,23 +6,25 @@ using UnityEngine.UI;
 public class Accusion : MonoBehaviour {
 
     public Suspect_Item suspect;
-    public GameObject[] susGO;
-    public GameObject suspectContainer;
+    //public GameObject[] susGO;
+    //public GameObject suspectContainer;
     public GameObject accusationContainer;
     public Text selected;
     public ClueDisplay cd;
     public GameObject popup;
     
     void Awake() {
-        susGO = GameObject.FindGameObjectsWithTag("Suspect");
+        //susGO = GameObject.FindGameObjectsWithTag("Suspect");
         selected.text = "Current selection: None";
     }
 
+    /*
     void OnEnable() {
         foreach (GameObject obj in susGO) {
             obj.transform.SetParent(accusationContainer.transform);
         }
     }
+    */
 
     public void SetSuspect(Suspect_Item sus) {
         suspect = sus;
@@ -42,8 +44,8 @@ public class Accusion : MonoBehaviour {
             cd.AddMinimum();
         }
         //also set the suspect parents back
-        foreach (GameObject obj in susGO) {
+        /*foreach (GameObject obj in susGO) {
             obj.transform.SetParent(suspectContainer.transform);
-        }
+        }*/
     }
 }
