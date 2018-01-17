@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ClueModel : MonoBehaviour {
 
@@ -9,13 +10,16 @@ public class ClueModel : MonoBehaviour {
     //    transform.Rotate(0, -(Input.GetAxis("Mouse X") * 10), 0);
     //}
 
-    private SpriteRenderer sr;
+    private Image sr;
 
     void Awake() {
-        sr = gameObject.GetComponent<SpriteRenderer>();
+        sr = gameObject.GetComponent<Image>();
     }
 
-    public void SetModel(Sprite s) {
+    public void SetModel(int id) {
+        string str = id.ToString();
+        Sprite s = Resources.Load<Sprite>("Sprites/Clues/" + str);
+        sr.gameObject.SetActive(true);
         sr.sprite = s;
     }
 }

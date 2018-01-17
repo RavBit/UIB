@@ -58,6 +58,7 @@ public class ClueDisplay : MonoBehaviour {
             float rand3 = Random.Range(20, 50);
             newClue.transform.position = transform.position + new Vector3(rand1, rand2, rand3);
             newClue.Display(clue);
+            newClue.id = clue.ID;
         }
     }
 
@@ -95,7 +96,7 @@ public class ClueDisplay : MonoBehaviour {
         }
     }
 
-    public void LoadClues(List<Quest_Clues> newClues) {
+    public void LoadClues(List<Quest_Clues> newClues, Clue_Map cm) {
         clues = newClues;
         StartCoroutine("Display");
     }

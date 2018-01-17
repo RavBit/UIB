@@ -20,6 +20,7 @@ public class ClueScript : MonoBehaviour {
     private Quest_Clues clueData;
     private GameObject objectTarget;
     public Sprite clueSprite;
+    public int id;
 
     void Start() {
         target = GameObject.FindWithTag("MainCamera").gameObject.transform;
@@ -43,11 +44,11 @@ public class ClueScript : MonoBehaviour {
                 Clues.found = 1;
             }
         }
-        clueData.found = 1;
+        //clueData.found = 1;
         gameObject.SetActive(false);
         //activate ClueCanvas
         ClueDisplay.canvas.SetActive(true);
-        clueModel.SetModel(clueSprite);
+        clueModel.SetModel(id);
         clueName.text = clueData.clue;
         description.text = clueData.description;
     }
