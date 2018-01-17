@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Quest_Manager : MonoBehaviour {
     [Header("Current Quest")]
     public Quest CurrentQuest;
@@ -14,6 +14,7 @@ public class Quest_Manager : MonoBehaviour {
     public Texture2D GreenMarker;
     public OnlineMapsMarker OMM;
     public ClueManager CM;
+    public Text db;
     public GameObject DialogScreen;
     void Start() {
         Setup();
@@ -29,7 +30,7 @@ public class Quest_Manager : MonoBehaviour {
         Event_Manager.DrawQuests += DrawQuests;
         Event_Manager.ToggleDialog += DrawDialog;
         Event_Manager.DistanceCheck += CheckDistanceQuest;
-        Event_Manager.DistanceCheck += CheckDistanceClues;
+        //Event_Manager.DistanceCheck += CheckDistanceClues;
         Event_Manager.SetQuestList += SetQuest;
         Event_Manager.SetCurrentQuest += SetCurrentQuest;
         Event_Manager.GetClues += GetClues;
@@ -60,22 +61,19 @@ public class Quest_Manager : MonoBehaviour {
         foreach (Clue_Map cm in CM.ClueMap) {
             double dis = OnlineMapsUtils.DistanceBetweenPointsD(new Vector2((float)cm.pos.pos_x, (float)cm.pos.pos_y), new Vector2(OnlineMapsLocationService.instance.GetLocationX(), OnlineMapsLocationService.instance.GetLocationY()));
             Debug.Log("DIST: " + dis);
-            if (dis < 0.025f) {
+            if (dis < 0.035f) {
                 int counter = 0;
                 foreach (OnlineMapsMarker marker in OnlineMaps.instance.markers) {
                     if (marker.label == "C" + counter) {
-                        if (!cm.ClickAble) {
-                            marker.texture = RedMarker;
-                            marker.Init();
-                            cm.ClickAble = true;
-                            OnlineMaps.instance.Redraw();
-                            cm.AddInteraction(counter);
-                        }
+                           marker.texture = RedMarker;
+                           cm.ClickAble = true;
+                           marker.Init();
+                           OnlineMaps.instance.Redraw();
+                           cm.AddInteraction(counter);
                     }
                     counter++;
                 }
             } else {
-                Debug.Log("TO FAR AWAY: " + cm.pos.pos_x);
                 cm.ClickAble = false;
                 OnlineMaps.instance.Redraw();
             }

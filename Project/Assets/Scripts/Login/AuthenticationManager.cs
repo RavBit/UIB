@@ -69,6 +69,7 @@ public class AuthenticationManager : MonoBehaviour {
                 } else {
                     Login_Feedback.text = "login successful.";
                     App_Manager.instance.SetUser(user);
+                    App_Manager.instance.SetUsername(user.email);
                     SceneManager.LoadScene("Home", LoadSceneMode.Single);
                 }
             } else {
@@ -105,6 +106,7 @@ public class AuthenticationManager : MonoBehaviour {
                 } else {
                     Login_Feedback.text = "login successful.";
                     App_Manager.instance.SetUser(user);
+                    App_Manager.instance.SetUsername(user.email);
                     SceneManager.LoadScene("Home", LoadSceneMode.Single);
                 }
             } else {
