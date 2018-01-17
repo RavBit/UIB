@@ -11,6 +11,7 @@ public class ClueDisplay : MonoBehaviour {
     public GameObject popup;
     public GameObject accuseUI;
     public Clue_Map CM;
+    public Backpack bp;
     public static ClueDisplay instance;
 
     private int foundClues = 0;
@@ -84,6 +85,7 @@ public class ClueDisplay : MonoBehaviour {
         foreach (Quest_Clues clue in CM.clues) {
             if (clue.found == 1) {
                 counter++;
+                bp.AddClue(clue);
             }
         }
         if(counter >= 2) {

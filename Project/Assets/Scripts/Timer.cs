@@ -17,7 +17,6 @@ public class Timer : MonoBehaviour {
 
     void Start() {
         time = 1800;
-        timerText.text = "";
     }
 
     public void GameStart() {
@@ -46,7 +45,7 @@ public class Timer : MonoBehaviour {
             timerText.text = secondsText;
         }
         else {
-            timerText.text = "1800";
+            timerText.text = "";
         }
 
         if (timerText.text == "0") {

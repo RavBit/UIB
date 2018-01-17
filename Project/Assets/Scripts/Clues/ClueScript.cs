@@ -27,7 +27,7 @@ public class ClueScript : MonoBehaviour {
         texts = ClueDisplay.canvas.GetComponentsInChildren<Text>();
         clueName = texts[0];
         description = texts[1];
-        clueModel = ClueDisplay.canvas.GetComponentInChildren<ClueModel>();
+        clueModel = ClueDisplay.canvas.GetComponentInChildren<ClueModel>(true);
         Debug.Log("Cluemodel " + clueModel.name);
     }
 
