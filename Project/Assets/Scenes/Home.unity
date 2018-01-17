@@ -1075,7 +1075,7 @@ MonoBehaviour:
   needRedraw: 1
   notInteractUnderGUI: 1
   provider: 2
-  mapType: google.terrain
+  mapType: cartodb.positron
   redrawOnPlay: 1
   renderInThread: 1
   resourcesPath: OnlineMapsTiles/{zoom}/{x}/{y}
@@ -1597,7 +1597,7 @@ Prefab:
       objectReference: {fileID: 1540769037}
     - target: {fileID: 1426234248432848, guid: c303ac8f26cfb064eb21898bc82d54fc, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c303ac8f26cfb064eb21898bc82d54fc, type: 2}
@@ -5598,8 +5598,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FQ_Clues:
-  - pos_x: 0
-    pos_y: 0
+  - pos_x: 52.08051
+    pos_y: 5.134724
   - pos_x: 0
     pos_y: 0
   - pos_x: 0
