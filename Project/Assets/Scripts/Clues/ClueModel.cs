@@ -14,12 +14,13 @@ public class ClueModel : MonoBehaviour {
 
     void Awake() {
         sr = gameObject.GetComponent<Image>();
+        sr.gameObject.SetActive(false);
     }
 
     public void SetModel(int id) {
+        sr.gameObject.SetActive(true);
         string str = id.ToString();
         Sprite s = Resources.Load<Sprite>("Sprites/Clues/" + str);
-        sr.gameObject.SetActive(true);
         sr.sprite = s;
     }
 }

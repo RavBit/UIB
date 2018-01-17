@@ -8,31 +8,38 @@ public class Timer : MonoBehaviour {
     public Text timerText;
     public bool gameStart;
     public GameObject EndScreen;
-    public GameObject timeBar;
 
 
     private float time;
     private float seconds;
+    private float minutes;
 
-    // Use this for initialization
+
     void Start() {
         time = 1800;
+        timerText.text = "";
     }
 
-    void GameStart() {
+    public void GameStart() {
         gameStart = true;
     }
 
-    // Update is called once per frame
     void Update() {
 
         if (gameStart) {
             time -= Time.deltaTime;
 
+            minutes = (int)(time / 60);
             seconds = (int)(time % 60); //Use the euclidean division for the seconds.
-            string secondsText = seconds.ToString ();
+            string secondsText;
+            if (seconds >= 10) {
+                secondsText = minutes.ToString() + ":" + seconds.ToString ();
+            } else {
+                secondsText = minutes.ToString() + ":0" + seconds.ToString ();
 
-            if (seconds < 0) {
+            }
+
+            if (time < 0) {
                 return;
             }
 
