@@ -82,10 +82,11 @@ public class ClueDisplay : MonoBehaviour {
 
     public void StopAR() {
         int counter = 0;
+        bp.QC.Clear();
         foreach (Quest_Clues clue in CM.clues) {
             if (clue.found == 1) {
                 counter++;
-                bp.AddClue(clue);
+                bp.QC.Add(clue);
             }
         }
         if(counter >= 2) {
@@ -98,7 +99,7 @@ public class ClueDisplay : MonoBehaviour {
     }
 
     public void Accuse() {
-        if (foundClues < minimunClues) {
+        if (bp.QC.Count < minimunClues) {
             popup.SetActive(true);
         } else {
             accuseUI.SetActive(true);
