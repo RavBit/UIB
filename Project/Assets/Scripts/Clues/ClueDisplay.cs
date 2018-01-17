@@ -31,9 +31,7 @@ public class ClueDisplay : MonoBehaviour {
         btn = canvas.GetComponentInChildren<Button>();
         clueName = texts[0];
         description = texts[1];
-        if (seenTutorial) {
-            canvas.SetActive(false);
-        }
+        canvas.SetActive(false);
     }
 
     public void StartDisplay () {
@@ -96,13 +94,16 @@ public class ClueDisplay : MonoBehaviour {
         }
     }
 
-    public void LoadClues(List<Quest_Clues> newClues) {
+    public void LoadClues(List<Quest_Clues> newClues, Clue_Map cm) {
         clues = newClues;
         StartCoroutine("Display");
     }
 
     public void StartAR() {
         AR.SetActive(true);
+        if (!seenTutorial) {
+            canvas.SetActive(true);
+        }
         MAP.SetActive(false);
     }
 
