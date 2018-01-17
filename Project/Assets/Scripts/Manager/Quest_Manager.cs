@@ -29,7 +29,7 @@ public class Quest_Manager : MonoBehaviour {
         Event_Manager.AddQuest += AddQuest;
         Event_Manager.DrawQuests += DrawQuests;
         Event_Manager.ToggleDialog += DrawDialog;
-        Event_Manager.DistanceCheck += CheckDistanceQuest;
+        //Event_Manager.DistanceCheck += CheckDistanceQuest;
         //Event_Manager.DistanceCheck += CheckDistanceClues;
         Event_Manager.SetQuestList += SetQuest;
         Event_Manager.SetCurrentQuest += SetCurrentQuest;
@@ -39,7 +39,7 @@ public class Quest_Manager : MonoBehaviour {
     }
     void CheckDistanceQuest() {
         foreach (Quest quest in Quests) {
-            double dis = OnlineMapsUtils.DistanceBetweenPointsD(new Vector2(quest.start_y, quest.start_x), new Vector2(OnlineMapsLocationService.instance.GetLocationX(), OnlineMapsLocationService.instance.GetLocationY()));
+            double dis = OnlineMapsUtils.DistanceBetweenPointsD(new Vector2(quest.start_y, quest.start_x), new Vector2(OnlineMapsLocationService.instance.GetLocationY(), OnlineMapsLocationService.instance.GetLocationX()));
             if (dis < 0.05f) {
                 foreach (OnlineMapsMarker marker in OnlineMaps.instance.markers) {
                     if (marker.label == quest.name) {
@@ -59,7 +59,7 @@ public class Quest_Manager : MonoBehaviour {
     }
     void CheckDistanceClues() {
         foreach (Clue_Map cm in CM.ClueMap) {
-            double dis = OnlineMapsUtils.DistanceBetweenPointsD(new Vector2((float)cm.pos.pos_x, (float)cm.pos.pos_y), new Vector2(OnlineMapsLocationService.instance.GetLocationX(), OnlineMapsLocationService.instance.GetLocationY()));
+            double dis = OnlineMapsUtils.DistanceBetweenPointsD(new Vector2((float)cm.pos.pos_x, (float)cm.pos.pos_y), new Vector2(OnlineMapsLocationService.instance.GetLocationY(), OnlineMapsLocationService.instance.GetLocationX()));
             Debug.Log("DIST: " + dis);
             if (dis < 0.035f) {
                 int counter = 0;

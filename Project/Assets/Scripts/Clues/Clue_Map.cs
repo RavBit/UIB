@@ -35,7 +35,9 @@ public class Clue_Map {
 
     private void OnMarkerClick(OnlineMapsMarkerBase marker)
     {
-         ClueDisplay.instance.LoadClues(clues, this);
-         ClueDisplay.instance.StartAR();
+        if (ClickAble) {
+            ClueDisplay.instance.LoadClues(clues, this);
+            ClueDisplay.instance.StartAR();
+        }
     }
 }
