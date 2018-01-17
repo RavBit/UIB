@@ -60,7 +60,7 @@ public class Quest_Manager : MonoBehaviour {
         foreach (Clue_Map cm in CM.ClueMap) {
             double dis = OnlineMapsUtils.DistanceBetweenPointsD(new Vector2((float)cm.pos.pos_x, (float)cm.pos.pos_y), new Vector2(OnlineMapsLocationService.instance.GetLocationX(), OnlineMapsLocationService.instance.GetLocationY()));
             Debug.Log("DIST: " + dis);
-            if (dis < 0.05f) {
+            if (dis < 0.025f) {
                 int counter = 0;
                 foreach (OnlineMapsMarker marker in OnlineMaps.instance.markers) {
                     if (marker.label == "C" + counter) {
