@@ -37,6 +37,12 @@ public class ClueScript : MonoBehaviour {
     void OnMouseOver() {
 
         //set this clue to found and make it invisible
+        List<Quest_Clues> QC = Event_Manager.Get_Clues();
+        foreach(Quest_Clues Clues in QC) {
+            if(clueName.text == Clues.clue) {
+                Clues.found = 1;
+            }
+        }
         clueData.found = 1;
         gameObject.SetActive(false);
         //activate ClueCanvas

@@ -26,7 +26,7 @@ public class Quest_Manager : MonoBehaviour {
         Event_Manager.DrawQuests += DrawQuests;
         Event_Manager.ToggleDialog += DrawDialog;
         Event_Manager.DistanceCheck += CheckDistanceQuest;
-        //Event_Manager.DistanceCheck += CheckDistanceClues;
+        Event_Manager.DistanceCheck += CheckDistanceClues;
         Event_Manager.SetQuestList += SetQuest;
         Event_Manager.SetCurrentQuest += SetCurrentQuest;
         Event_Manager.GetClues += GetClues;
@@ -53,7 +53,7 @@ public class Quest_Manager : MonoBehaviour {
     void CheckDistanceClues() {
         foreach (Clue_Map cm in CM.ClueMap) {
             double dis = OnlineMapsUtils.DistanceBetweenPointsD(new Vector2((float)cm.pos.pos_x, (float)cm.pos.pos_y), new Vector2(OnlineMapsLocationService.instance.GetLocationX(), OnlineMapsLocationService.instance.GetLocationY()));
-            if (dis < 0.05f) {
+            if (dis < 5f) {
                 int counter = 0;
                 foreach (OnlineMapsMarker marker in OnlineMaps.instance.markers) {
                     if (marker.label == "C" + counter) {
@@ -65,6 +65,8 @@ public class Quest_Manager : MonoBehaviour {
                         }
                     }
                 }
+            } else {
+                Debug.Log("TO FAR AWAY: " + cm.pos.pos_x);
             }
         }
     }

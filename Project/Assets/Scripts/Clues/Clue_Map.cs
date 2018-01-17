@@ -33,7 +33,7 @@ public class Clue_Map {
     private void OnMarkerClick(OnlineMapsMarkerBase marker)
     {
         Debug.Log("CLICKABLE");
-        ClueDisplay.instance.LoadClues(clues);
+        ClueDisplay.instance.LoadClues(clues, this);
         ClueDisplay.instance.StartAR();
     }
 }
