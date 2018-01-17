@@ -7,6 +7,7 @@ public class Suspect_Item : MonoBehaviour {
     public string look;
     public float height;
     private GameObject suspectParent;
+    private Accusion acc;
     
     public GameObject suspectBody;
     //public GameObject suspectHair;
@@ -17,8 +18,8 @@ public class Suspect_Item : MonoBehaviour {
     private Sprite body;
     //private Sprite hair;
 
-
-    public Text Name;
+    private Image img;
+    private Text nameText;
     
     public Suspect_Item(string n, string d, string l, float h) {
         suspectName = n;
@@ -30,6 +31,10 @@ public class Suspect_Item : MonoBehaviour {
     void OnEnable () {
         suspectBody = gameObject;
         StartCoroutine("FillArray");
+        img = gameObject.GetComponent<Image>();
+        acc = GameObject.Find("AccusionScreen").GetComponent<Accusion>();
+        nameText = gameObject.GetComponentInChildren<Text>();
+        nameText.text = suspectName;
     }
 
     private IEnumerator FillArray() {
@@ -70,7 +75,6 @@ public class Suspect_Item : MonoBehaviour {
 
     public void SelectSuspect() {
         //this should check if the accusion script is enabled in the scene
-        Accusion.SetSuspect(this);
-        //show a little border around it or something
+        acc.SetSuspect(this);
     }
 }

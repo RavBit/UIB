@@ -16,14 +16,17 @@ public class ClueScript : MonoBehaviour {
     private Text[] texts;
     public Text clueName, description;
     public Transform target;
+    public ClueModel clueModel;
     private Quest_Clues clueData;
     private GameObject objectTarget;
+    public Sprite clueSprite;
 
     void Start() {
         target = GameObject.FindWithTag("MainCamera").gameObject.transform;
         texts = ClueDisplay.canvas.GetComponentsInChildren<Text>();
         clueName = texts[0];
         description = texts[1];
+        clueModel = ClueDisplay.canvas.GetComponentInChildren<ClueModel>();
     }
 
     void Update() {
@@ -31,14 +34,14 @@ public class ClueScript : MonoBehaviour {
         transform.LookAt(target);
     }
 
-    void OnMouseDown() {
+    void OnMouseOver() {
 
         //set this clue to found and make it invisible
         clueData.found = 1;
         gameObject.SetActive(false);
         //activate ClueCanvas
         ClueDisplay.canvas.SetActive(true);
-
+        clueModel.SetModel(clueSprite);
         clueName.text = clueData.clue;
         description.text = clueData.description;
     }
