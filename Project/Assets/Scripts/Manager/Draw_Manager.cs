@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Draw_Manager : MonoBehaviour {
+    public OnlineMapsMarker QuestMarker;
     private void Start() {
         Setup();
+    }
+    public OnlineMapsMarker GetM() {
+        return QuestMarker;
     }
     public void Setup() {
         //Pool to setup the events in
@@ -16,6 +20,9 @@ public class Draw_Manager : MonoBehaviour {
         m.label = quest.name;
         m.scale = 2;
         OnlineMaps.instance.AddMarker(m);
+        if(quest.name == "HKU") {
+            QuestMarker = m;
+        }
         //OnlineMapsMarker.OnMarkerDrawTooltip.
     }
     public void DrawClues()
