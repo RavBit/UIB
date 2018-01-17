@@ -108,4 +108,13 @@ public class ClueDisplay : MonoBehaviour {
     public void CloseTutorial() {
         seenTutorial = true;
     }
+
+    public void AddMinimum() {
+        if (minimunClues < clues.Count) {
+            minimunClues += 2;
+        } else if (minimunClues > clues.Count) {
+            minimunClues = clues.Count;
+        }
+    }
+    
 }

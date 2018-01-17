@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Accusion : MonoBehaviour {
 
     public Suspect_Item suspect;
-    public static Accusion ins;
     public GameObject[] susGO;
     public GameObject suspectContainer;
     public GameObject accusationContainer;
-
+    public Text selected;
+    public ClueDisplay cd;
+    public GameObject popup;
+    
     void Awake() {
-        ins = this;
         susGO = GameObject.FindGameObjectsWithTag("Suspect");
+        selected.text = "Current selection: None";
     }
 
     void OnEnable() {
@@ -21,15 +24,23 @@ public class Accusion : MonoBehaviour {
         }
     }
 
-    public static void SetSuspect(Suspect_Item sus) {
-        ins.suspect = sus;
+    public void SetSuspect(Suspect_Item sus) {
+        suspect = sus;
+        selected.text = "Current selection: " + suspect.suspectName;
     }
 	
     public void MakeAccusion() {
+        popup.SetActive(true);
+        Text txt = popup.GetComponentInChildren<Text>();
         //check the selected suspect
-        //compare to quest data
-        //if they are the same, quest completed
-        //if not, minimunclues goes up by 2
+        if (suspect.suspectName == "Adrian van Hek") {
+            txt.text =  "You've found the culprit! He will be punished for his deeds. Well done, detective!";
+            popup.SetActive(true);
+        } else {
+            //if not, minimunclues goes up by 2
+            txt.text = "It seems you've made a wrong conclusion. Find some more clues and try again.";
+            cd.AddMinimum();
+        }
         //also set the suspect parents back
         foreach (GameObject obj in susGO) {
             obj.transform.SetParent(suspectContainer.transform);
