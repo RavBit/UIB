@@ -67,6 +67,7 @@ public class Quest_Manager : MonoBehaviour {
                         if (!cm.ClickAble) {
                             marker.texture = RedMarker;
                             marker.Init();
+                            cm.ClickAble = true;
                             OnlineMaps.instance.Redraw();
                             cm.AddInteraction(counter);
                         }
