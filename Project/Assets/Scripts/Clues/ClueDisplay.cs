@@ -37,8 +37,7 @@ public class ClueDisplay : MonoBehaviour {
     }
 
     public void StartDisplay () {
-        //clues = Event_Manager.Get_Clues();
-        //StartCoroutine("Display");
+        StartCoroutine("Display");
 	}
 	
 	public IEnumerator Display() {
@@ -63,6 +62,7 @@ public class ClueDisplay : MonoBehaviour {
     }
 
     public void CheckClues() {
+        clues = Event_Manager.Get_Clues();
         foundClues = 0;
         foreach (Quest_Clues clue in clues) {
             if (clue.found == 1) {

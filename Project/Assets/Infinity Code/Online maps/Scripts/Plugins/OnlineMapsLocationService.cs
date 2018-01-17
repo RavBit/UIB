@@ -141,7 +141,7 @@ public class OnlineMapsLocationService : OnlineMapsLocationServiceGenericBase<On
 #if UNITY_EDITOR
         return emulatorPosition.x;
 #endif
-       // return data.longitude;
+        return data.longitude;
     }
 
     public float GetLocationY() {
@@ -149,7 +149,7 @@ public class OnlineMapsLocationService : OnlineMapsLocationServiceGenericBase<On
 #if UNITY_EDITOR
         return emulatorPosition.y;
 #endif
- //       return data.latitude;
+        return data.latitude;
     }
 
     public override void StopLocationService()

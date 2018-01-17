@@ -100,6 +100,7 @@ public class Web_Manager : MonoBehaviour
     }
     public IEnumerator StartQuest(Quest CurQuest)
     {
+        OnlineMaps.instance.RemoveAllMarkers();
         WWWForm quest_id = new WWWForm();
         quest_id.AddField("quest_id", CurQuest.id);
         quest_id.AddField("user_id", App_Manager.instance.User.id);
