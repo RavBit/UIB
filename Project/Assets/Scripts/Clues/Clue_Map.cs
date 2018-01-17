@@ -5,8 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class Clue_Map {
     public List<Quest_Clues> clues;
-    private OnlineMapsMarker dynamicMarker;
+    public Position pos;
     public bool ClickAble;
+    private OnlineMapsMarker dynamicMarker;
 
     public void AddInteraction(int id)
     {

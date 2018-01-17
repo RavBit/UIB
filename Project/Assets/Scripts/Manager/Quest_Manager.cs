@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Quest_Manager : MonoBehaviour {
@@ -12,6 +13,7 @@ public class Quest_Manager : MonoBehaviour {
     public Texture2D RedMarker;
     public Texture2D GreenMarker;
 
+    public ClueManager CM;
     public GameObject DialogScreen;
     void Start() {
         Setup();
@@ -24,6 +26,7 @@ public class Quest_Manager : MonoBehaviour {
         Event_Manager.DrawQuests += DrawQuests;
         Event_Manager.ToggleDialog += DrawDialog;
         Event_Manager.DistanceCheck += CheckDistanceQuest;
+        //Event_Manager.DistanceCheck += CheckDistanceClues;
         Event_Manager.SetQuestList += SetQuest;
         Event_Manager.SetCurrentQuest += SetCurrentQuest;
         Event_Manager.GetClues += GetClues;
@@ -41,6 +44,24 @@ public class Quest_Manager : MonoBehaviour {
                             marker.Init();
                             OnlineMaps.instance.Redraw();
                             quest.AddInteraction();
+                        }
+                    }
+                }
+            }
+        }
+    }
+    void CheckDistanceClues() {
+        foreach (Clue_Map cm in CM.ClueMap) {
+            double dis = OnlineMapsUtils.DistanceBetweenPointsD(new Vector2((float)cm.pos.pos_x, (float)cm.pos.pos_y), new Vector2(OnlineMapsLocationService.instance.GetLocationX(), OnlineMapsLocationService.instance.GetLocationY()));
+            if (dis < 0.05f) {
+                int counter = 0;
+                foreach (OnlineMapsMarker marker in OnlineMaps.instance.markers) {
+                    if (marker.label == "C" + counter) {
+                        if (!cm.ClickAble) {
+                            marker.texture = RedMarker;
+                            marker.Init();
+                            OnlineMaps.instance.Redraw();
+                            cm.AddInteraction(counter);
                         }
                     }
                 }

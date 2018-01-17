@@ -25,6 +25,7 @@ public class Generate_Clues : MonoBehaviour {
         OnlineMaps.instance.Redraw();
         counter = ClueMap.Count;
         CM = new List<Clue_Map>();
+        Debug.Log("CM COUNT " + ClueMap.Count);
         CM = ClueMap;
         // Makes a request to Google Places API.
         OnlineMapsGooglePlaces.FindNearby(
@@ -58,10 +59,13 @@ public class Generate_Clues : MonoBehaviour {
             if (tempcounter < counter)
             {
                 tempcounter++;
+                CM[tempcounter - 1].pos = new Position();
                 Debug.Log("TEMPCOUNTER " + tempcounter + " AND COUNTER " + counter);
                 // Create a marker at the location of the result.
                 OnlineMapsMarker marker = OnlineMaps.instance.AddMarker(PM.FQ_Clues[tempcounter - 1].pos_y, PM.FQ_Clues[tempcounter - 1].pos_x, "??");
                 marker.label = "C" + (tempcounter -1);
+                //CM[tempcounter - 1].pos.pos_x = PM.FQ_Clues[tempcounter - 1].pos_y;
+                //CM[tempcounter - 1].pos.pos_y = PM.FQ_Clues[tempcounter - 1].pos_x;
                 marker.texture = ClueMarker;
                 marker.scale = 2;
                 marker.Init();
