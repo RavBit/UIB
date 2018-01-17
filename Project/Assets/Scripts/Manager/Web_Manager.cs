@@ -14,7 +14,7 @@ public class Web_Manager : MonoBehaviour
     public List<Quest> _questdata;
     public List<Witness> _temp;
     public Witness[] wtest;
-   
+    public GameObject LoadingScreen;
     void Awake()
     {
         if (instance != null)
@@ -25,6 +25,7 @@ public class Web_Manager : MonoBehaviour
     public IEnumerator LoadQuests()
     {
         _questdata.Clear();
+        LoadingScreen.SetActive(true);
         //Command gescheiden bestand CSV
         // ! https://www.mysql.com/products/workbench/
         WWW questdata = new WWW("http://81.169.177.181/UIB/request_quests.php");
@@ -98,9 +99,11 @@ public class Web_Manager : MonoBehaviour
                 Event_Manager.Draw_Quest(DRAW_OBJECTS.Quest);
             }
         }
+        LoadingScreen.SetActive(false);
     }
     public IEnumerator StartQuest(Quest CurQuest)
     {
+        LoadingScreen.SetActive(true);
         OnlineMaps.instance.Redraw();
         WWWForm quest_id = new WWWForm();
         quest_id.AddField("quest_id", CurQuest.id);
@@ -122,6 +125,7 @@ public class Web_Manager : MonoBehaviour
             }
         }
         Quest_Manager.Load_Quest();
+
     }
     public void Cancel_Quest(Quest CurrentQuest)
     {
