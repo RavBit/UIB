@@ -96,7 +96,7 @@ public class ClueDisplay : MonoBehaviour {
         }
     }
 
-    public void LoadClues(List<Quest_Clues> newClues, Clue_Map cm) {
+    public void LoadClues(List<Quest_Clues> newClues) {
         clues = newClues;
         StartCoroutine("Display");
     }

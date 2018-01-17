@@ -56,7 +56,6 @@ GameObject:
   - component: {fileID: 81305417341561888}
   - component: {fileID: 114195243445100688}
   - component: {fileID: 114371934003662256}
-  - component: {fileID: 114511761056210460}
   m_Layer: 0
   m_Name: ARCamera
   m_TagString: Untagged
@@ -457,17 +456,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Proceed
---- !u!114 &114511761056210460
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1326042149400112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114596046227007450
 MonoBehaviour:
   m_ObjectHideFlags: 1
