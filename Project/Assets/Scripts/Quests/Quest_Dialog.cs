@@ -8,8 +8,8 @@ public class Quest_Dialog : MonoBehaviour {
     public GameObject Suspect_Item;
     public GameObject Suspect_Container;
     public Quest CurQuest;
-    
 
+    public Draw_Manager DM;
     private void Awake() {
         Event_Manager.DialogLoad += SetDialog;
     }
@@ -21,6 +21,7 @@ public class Quest_Dialog : MonoBehaviour {
     }
     public void StartQuest()
     {
+        OnlineMaps.instance.RemoveMarker(DM.GetM());
         Web_Manager.instance.StartCoroutine("StartQuest", CurQuest);
 
     }

@@ -53,7 +53,8 @@ public class Quest_Manager : MonoBehaviour {
     void CheckDistanceClues() {
         foreach (Clue_Map cm in CM.ClueMap) {
             double dis = OnlineMapsUtils.DistanceBetweenPointsD(new Vector2((float)cm.pos.pos_x, (float)cm.pos.pos_y), new Vector2(OnlineMapsLocationService.instance.GetLocationX(), OnlineMapsLocationService.instance.GetLocationY()));
-            if (dis < 5f) {
+            Debug.Log("DIST: " + dis);
+            if (dis < 0.05f) {
                 int counter = 0;
                 foreach (OnlineMapsMarker marker in OnlineMaps.instance.markers) {
                     if (marker.label == "C" + counter) {
@@ -64,9 +65,12 @@ public class Quest_Manager : MonoBehaviour {
                             cm.AddInteraction(counter);
                         }
                     }
+                    counter++;
                 }
             } else {
                 Debug.Log("TO FAR AWAY: " + cm.pos.pos_x);
+                cm.ClickAble = false;
+                OnlineMaps.instance.Redraw();
             }
         }
     }
