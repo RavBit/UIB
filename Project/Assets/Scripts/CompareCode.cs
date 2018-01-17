@@ -10,7 +10,7 @@ public class CompareCode : MonoBehaviour {
     public Text txt;
 
     public void CheckCode() {
-       if (txt.text == "Utrecht" || txt.text == "Mystery" || txt.text == "Detective") {
+       if (txt.text == "Utrecht" || txt.text == "Mystery" || txt.text == "Detective" || txt.text == "Coffee" || txt.text == "Magenta") {
             accuse.SetActive(true);
         }
     }
