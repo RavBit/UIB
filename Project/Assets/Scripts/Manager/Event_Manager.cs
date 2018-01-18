@@ -11,6 +11,10 @@ public class Event_Manager : MonoBehaviour {
     public delegate void DrawObjects();
     public static event DrawObjects DrawQuests;
 
+    //Delegate to draw in objects
+    public delegate void LockGame();
+    public static event LockGame GameLock;
+
     //Delegate to add Quest to the QuestManager;
     public delegate void QuestData(Quest quest);
     public static event QuestData AddQuest;
@@ -78,6 +82,10 @@ public class Event_Manager : MonoBehaviour {
                 DrawQuests();
                 break;
         }
+    }
+    public static void Game_Lock()
+    {
+        GameLock();
     }
     public static void Toggle_Elements(DRAW_OBJECTS d_o, bool toggle, int id) {
         switch (d_o) {

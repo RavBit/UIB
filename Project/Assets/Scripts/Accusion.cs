@@ -12,6 +12,8 @@ public class Accusion : MonoBehaviour {
     public Text selected;
     public ClueDisplay cd;
     public GameObject popup;
+
+    public Timer timer;
     
     void Awake() {
         //susGO = GameObject.FindGameObjectsWithTag("Suspect");
@@ -36,8 +38,11 @@ public class Accusion : MonoBehaviour {
         Text txt = popup.GetComponentInChildren<Text>();
         //check the selected suspect
         if (suspect.suspectName == "Adrian van Hek") {
-            txt.text =  "You've found the culprit! He will be punished for his deeds. Well done, detective!";
+            timer.GameStop();
+            txt.text =  "You've found the culprit! He will be punished for his deeds. Well done, detective! Your score has been added to the scorelist. Please go back to the UIB";
             popup.SetActive(true);
+            Web_Manager.instance.EndQuest((int)timer.time);
+            Invoke("Lock", 10);
         } else {
             //if not, minimunclues goes up by 2
             txt.text = "It seems you've made a wrong conclusion. Find some more clues and try again.";
@@ -47,5 +52,10 @@ public class Accusion : MonoBehaviour {
         /*foreach (GameObject obj in susGO) {
             obj.transform.SetParent(suspectContainer.transform);
         }*/
+    }
+    public void Lock()
+    {
+        popup.SetActive(false);
+        PlayerPrefs.SetInt("Finished", 1);
     }
 }

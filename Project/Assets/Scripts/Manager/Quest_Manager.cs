@@ -29,7 +29,7 @@ public class Quest_Manager : MonoBehaviour {
         Event_Manager.AddQuest += AddQuest;
         Event_Manager.DrawQuests += DrawQuests;
         Event_Manager.ToggleDialog += DrawDialog;
-        //Event_Manager.DistanceCheck += CheckDistanceQuest;
+        Event_Manager.DistanceCheck += CheckDistanceQuest;
         //Event_Manager.DistanceCheck += CheckDistanceClues;
         Event_Manager.SetQuestList += SetQuest;
         Event_Manager.SetCurrentQuest += SetCurrentQuest;
@@ -38,23 +38,20 @@ public class Quest_Manager : MonoBehaviour {
         Event_Manager.SetClueFound += Set_ClueFound;
     }
     void CheckDistanceQuest() {
+        Debug.Log("Dist test");
         foreach (Quest quest in Quests) {
-            double dis = OnlineMapsUtils.DistanceBetweenPointsD(new Vector2(quest.start_y, quest.start_x), new Vector2(OnlineMapsLocationService.instance.GetLocationY(), OnlineMapsLocationService.instance.GetLocationX()));
-            if (dis < 0.05f) {
                 foreach (OnlineMapsMarker marker in OnlineMaps.instance.markers) {
                     if (marker.label == quest.name) {
-                        if (!quest.ClickAble) {
                             marker.texture = RedMarker;
                             marker.Init();
                             OnlineMaps.instance.Redraw();
                             quest.AddInteraction();
                             if (quest.id == 1) {
+                            Debug.Log("Marker");
                                 OMM = marker;
                             }
                         }
-                    }
                 }
-            }
         }
     }
     void CheckDistanceClues() {

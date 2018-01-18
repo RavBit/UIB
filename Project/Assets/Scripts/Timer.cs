@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour {
     public GameObject EndScreen;
 
 
-    private float time;
+    public float time;
     private float seconds;
     private float minutes;
 
@@ -22,7 +22,10 @@ public class Timer : MonoBehaviour {
     public void GameStart() {
         gameStart = true;
     }
-
+    public void GameStop()
+    {
+        gameStart = false;
+    }
     void Update() {
 
         if (gameStart) {

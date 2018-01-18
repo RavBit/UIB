@@ -13,5 +13,9 @@ public class CompareCode : MonoBehaviour {
        if (txt.text == "Utrecht" || txt.text == "Mystery" || txt.text == "Detective" || txt.text == "Coffee" || txt.text == "Magenta") {
             accuse.SetActive(true);
         }
+       else
+        {
+            accuse.SetActive(false);
+        }
     }
 }

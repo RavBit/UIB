@@ -19,6 +19,13 @@ public class App_Manager : MonoBehaviour {
             instance = this;
         DontDestroyOnLoad(transform.gameObject);
     }
+    void Update()
+    {
+        if (PlayerPrefs.GetInt("Finished") == 1)
+        {
+            Event_Manager.Game_Lock();
+        }
+    }
     // Set username from the Authentication Mgr
     public void SetUsername (string _username) {
         username = _username;

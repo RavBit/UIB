@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Draw_Manager : MonoBehaviour {
-    public OnlineMapsMarker QuestMarker;
     public Texture2D RedMarker;
     private void Start() {
         Setup();
-    }
-    public OnlineMapsMarker GetM() {
-        return QuestMarker;
     }
     public void Setup() {
         //Pool to setup the events in

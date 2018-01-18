@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class System_Manager : MonoBehaviour {
     public Text usernameTag;
     public GameObject MapCanvas;
+    public GameObject LockScreen;
     void Awake()
     {
         setup();
@@ -13,12 +14,18 @@ public class System_Manager : MonoBehaviour {
 
     void setup()
     {
+        Event_Manager.GameLock += Locked;
         string _username = App_Manager.instance.GetUsername;
         if (_username != null)
-            usernameTag.text = "Inspector" + _username;
+            usernameTag.text = "" + _username;
         if (_username == null)
             Debug.LogError("Login failed! Please sign in again!");
             
+    }
+
+    void Locked()
+    {
+        LockScreen.SetActive(true);
     }
     public void Logout()
     {

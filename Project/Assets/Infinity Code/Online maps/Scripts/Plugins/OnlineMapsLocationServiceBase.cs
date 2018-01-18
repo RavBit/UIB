@@ -470,7 +470,8 @@ public abstract class OnlineMapsLocationServiceBase : MonoBehaviour
     /// </summary>
     public void UpdatePosition()
     {
-        Event_Manager.Distance_Check();
+        //Debug.Log("update");
+        //Event_Manager.Distance_Check();
         if (!useGPSEmulator && position == Vector2.zero) return;
         if (api == null) return;
 

@@ -99,6 +99,7 @@ public class Web_Manager : MonoBehaviour
                 Event_Manager.Draw_Quest(DRAW_OBJECTS.Quest);
             }
         }
+        Event_Manager.Distance_Check();
         LoadingScreen.SetActive(false);
     }
     public IEnumerator StartQuest(Quest CurQuest)
@@ -154,6 +155,31 @@ public class Web_Manager : MonoBehaviour
             }
         }
 
+    }
+    public void EndQuest(int time)
+    {
+        StartCoroutine("End_Quest", time);
+    }
+    public IEnumerator End_Quest(int time)
+    {
+        LoadingScreen.SetActive(true);
+        WWWForm score_id = new WWWForm();
+        score_id.AddField("user_id", App_Manager.instance.User.id);
+        score_id.AddField("score_id", time);
+        //Command gescheiden bestand CSV
+        // ! https://www.mysql.com/products/workbench/
+        WWW scoredata = new WWW("http://81.169.177.181/UIB/set_score.php", score_id);
+        yield return scoredata;
+        Debug.Log(scoredata.text);
+        if (string.IsNullOrEmpty(scoredata.error))
+        {
+            CurQuestChecker CQCX = JsonUtility.FromJson<CurQuestChecker>(scoredata.text);
+            if (CQCX.success)
+            {
+                Debug.Log("Quest finished");
+            }
+        }
+        Debug.Log("Quest ended");
     }
 }
 

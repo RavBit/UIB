@@ -20,7 +20,7 @@ public class AuthenticationManager : MonoBehaviour {
     public GameObject fieldEmailAddress;
     public GameObject fieldPassword;
     public GameObject fieldReenterPassword;
-
+    public GameObject LockedScreen;
     public Text textEmail;
     public Text textPassword;
     public Text ReenterPassword;
@@ -35,9 +35,12 @@ public class AuthenticationManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Login_Feedback.text = "";
-
+        Event_Manager.GameLock += Locked;
     }
-
+    public void Locked()
+    {
+        LockedScreen.SetActive(true);
+    }
     public void LoginButtonTapped() {
         Login_Feedback.text = "Logging in...";
         StartCoroutine("RequestLogin");
@@ -104,10 +107,7 @@ public class AuthenticationManager : MonoBehaviour {
                 if (user.error != "") {
                     Login_Feedback.text = user.error;
                 } else {
-                    Login_Feedback.text = "login successful.";
-                    App_Manager.instance.SetUser(user);
-                    App_Manager.instance.SetUsername(user.email);
-                    SceneManager.LoadScene("Home", LoadSceneMode.Single);
+                    Login_Feedback.text = "You can log in now";
                 }
             } else {
                 Login_Feedback.text = "An error occured";
